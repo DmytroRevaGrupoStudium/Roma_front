@@ -1,0 +1,25 @@
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="5000">
+    <div class="carousel-inner">
+        <div *ngFor="let tatuaje of tatuajes; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+            <div class="d-flex justify-content-center">
+                <div class="card product-card">
+                    <img class="card-img-top" [src]="tatuaje.imagenes[0]" [alt]="tatuaje.nombre">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tatuaje.nombreTatuaje }}</h5>
+                        <p class="card-text">{{ tatuaje.descripcion }}</p>
+                        <div class="d-flex justify-content-center">
+                            <button [routerLink]="['/contacto']" type="button" class="btn btn-sm btn-outline-success">Obtener cita</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Controles de avance y retroceso -->
+    <a class="carousel-control-prev" href="#carouselExampleSlidesOnly" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+</div>

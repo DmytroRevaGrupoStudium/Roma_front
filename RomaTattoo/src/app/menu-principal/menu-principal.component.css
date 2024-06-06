@@ -1,0 +1,46 @@
+/* CSS para el carrousel */
+
+#carouselExampleSlidesOnly {
+    background-image: url('/background.jpg'); /* Reemplaza 'ruta/de/la/imagen.jpg' con la ruta de tu imagen */
+    background-size: cover; /* Para asegurarse de que la imagen cubra todo el contenedor */
+    background-repeat: no-repeat; /* Para evitar que la imagen se repita */
+}
+
+/* Estilo para cada tarjeta de producto */
+.product-card {
+    width: auto; /* Tamaño máximo de la tarjeta */
+    margin: auto;
+    flex-direction: row; /* Para colocar la imagen y la descripción en columnas */
+}
+
+/* Estilo para la imagen del producto */
+.card-img-top {
+    width: 500px; /* Tamaño máximo de la imagen */
+    height: 500px; /* Tamaño máximo de la imagen */
+}
+
+/* Estilo para el cuerpo de la tarjeta (descripción del producto) */
+.card-body {
+    padding: 1rem;
+}
+
+/* Estilo para el botón "Ver más" */
+.btn-ver-mas {
+    margin-top: 1rem;
+}
+
+.card
+{
+    background-color: beige;
+}
+
+.separador
+{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.row
+{
+    margin-bottom: 5%;
+}

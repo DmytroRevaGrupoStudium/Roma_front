@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <div class="row">
+    <!-- Columna de imágenes adicionales -->
+    <div class="col-md-6">
+      <div class="row mb-2">
+        <div class="col-3">
+          <!-- Iterar sobre las imágenes del producto -->
+          <img *ngFor="let imagen of product.imagenes; let i = index" 
+            [src]="imagen" 
+            class="img-fluid mb-2 small-image" 
+            [alt]="product.nombreProducto" 
+            (click)="selectImage(imagen)">
+        </div>        
+        <div class="col">
+          <img [src]="selectedImage" class="img-fluid" alt="{{ product.nombreProducto }}">
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna de la descripción con botón "Comprar" -->
+    <div class="col-md-6">
+      <div class="row mb-2">
+      </div>
+      <div class="row mb-2">
+        <div class="col">
+          <h2>{{ product.nombreProducto }}</h2>
+          <p class="lead">{{ product.descripcionCorta }}</p>
+          <p class="lead">{{ product.descripcionLarga }}</p>
+          <p class="font-weight-bold">{{ product.precio }}€
+          </p>
+          <button class="btn btn-success btn-lg">Comprar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

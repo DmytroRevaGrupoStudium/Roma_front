@@ -1,0 +1,62 @@
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="5000">
+    <div class="carousel-inner">
+        <div *ngFor="let product of products; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+            <div class="d-flex justify-content-center">
+                <div class="card product-card">
+                    <img class="card-img-top" [src]="product.img" [alt]="product.name">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <div class="d-flex justify-content-center">
+                            <button [routerLink]="['/vista_producto', product.id]" type="button" class="btn btn-sm btn-outline-success">Detalles</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Controles de avance y retroceso -->
+    <a class="carousel-control-prev" href="#carouselExampleSlidesOnly" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+</div>
+
+<div class="container">
+    <div class="separador">
+    <h2>Tipos de productos</h2>
+    </div>
+
+    <div class="row">
+        <!-- Card de Sudaderas -->
+        <div class="col">
+            <div class="card product-card" style="background-image: url('firstdesign.jpg');">
+                <div class="card-body">
+                    <h3 class="card-title">Sudaderas</h3>
+                    <p class="card-text">Descripción de las sudaderas</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card de Camisetas -->
+        <div class="col">
+            <div class="card product-card" style="background-image: url('firstdesign.jpg');">
+                <div class="card-body">
+                    <h3 class="card-title">Camisetas</h3>
+                    <p class="card-text">Descripción de las camisetas</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card de Gorras -->
+        <div class="col">
+            <div class="card product-card" style="background-image: url('firstdesign.jpg');">
+                <div class="card-body">
+                    <h3 class="card-title">Gorras</h3>
+                    <p class="card-text">Descripción de las gorras</p>
+                </div>
+            </div>
+        </div>
+        <button [routerLink]="['/menu_ropa']" class="btn btn-outline-success m-2">Ver más</button>
+    </div>
+</div>
