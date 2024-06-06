@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { InfoService } from '../services/info.service';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  companyName: String = '';
+
+  constructor(
+    private infoService: InfoService,
+  ) {
+    this.companyName = infoService.companyName;
+  }
 }

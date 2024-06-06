@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { NuevoTatuajeComponent } from './nuevo-tatuaje/nuevo-tatuaje.component';
+import { NuevoTipoProductoComponent } from './nuevo-tipo-producto/nuevo-tipo-producto.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NuevoTatuajeComponent } from './nuevo-tatuaje/nuevo-tatuaje.component';
     TatuajesComponent,
     NuevoProductoComponent,
     NuevoTatuajeComponent,
+    NuevoTipoProductoComponent,
   ],
   imports: [
     BrowserModule,

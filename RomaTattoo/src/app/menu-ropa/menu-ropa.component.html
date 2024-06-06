@@ -19,7 +19,7 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ product.nombreProducto }}</h5>
             <p class="card-text">{{ product.descripcionCorta }}</p>
-            <h4 class="card-text">{{ product.precio }}€</h4>
+            <h4 class="card-text">{{ product.precio.toFixed(2) }}€</h4>
             <div class="d-flex justify-content-center">
               <button type="button" class="btn btn-sm btn-outline-success" (click)="verMas(product)">Ver más</button>
             </div>

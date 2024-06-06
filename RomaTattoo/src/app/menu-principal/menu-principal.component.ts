@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { ProductoService } from '../services/producto.service';
+import { Router } from '@angular/router';
+import { Producto } from '../models/producto';
+import { TipoProductoService } from '../services/tipo-producto.service';
 
 declare var $: any;
 
@@ -8,10 +12,32 @@ declare var $: any;
   styleUrls: ['./menu-principal.component.css']
 })
 export class MenuPrincipalComponent {
-  products = [
-    { id: 1, name: 'Camiseta Gema First Edition', description: 'Camiseta con diseño simple de tatuaje de Gema', img: 'https://m.media-amazon.com/images/I/A13usaonutL._CLa%7C2140%2C2000%7C91Ed%2BM21Q7L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png', precio: '15€', tipo: 'Camisetas'},
-    { id: 2, name: 'Sudadera Gema First Edition', description: 'Sudadera con diseño simple de tatuaje de Gema', img: 'https://m.media-amazon.com/images/I/B1Wsm-8LxOS._CLa%7C2140%2C2000%7CB1UmBdOyB-L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX342_SY445_.png', precio: '20€', tipo: 'Sudaderas'},
-    { id: 3, name: 'Camiseta Old School', description: 'Camiseta Old School con diseño personalizado', img: 'https://m.media-amazon.com/images/I/A13usaonutL._CLa%7C2140%2C2000%7C8188h5m-pEL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png', precio: '30€', tipo: 'Camisetas'},
-    { id: 4, name: 'Gorra Old School', description: 'Gorra con diseño Old School', img: 'https://m.media-amazon.com/images/I/91NgDj08E8L._AC_SX679_.jpg', precio: '100€', tipo: 'Gorras'}
-  ];
+  products!: any[];
+  tiposProductos!: any[];
+
+  constructor(
+    private productoService: ProductoService,
+    private router: Router,
+    private tipoProductoService: TipoProductoService
+  ) {}
+
+  ngOnInit(): void {
+    // Obtener los productos del servicio al inicializar el componente
+    this.productoService.getProducts().subscribe(products => {
+      this.products = products;
+    });
+
+    this.tipoProductoService.getTiposProducts().subscribe(tiposProductos => {
+      this.tiposProductos = tiposProductos;
+    });
+  }
+
+  verMas(product: Producto): void {
+    if (product && product.id) {
+      console.log(product.id);
+      this.router.navigate(['/vista_producto', product.id]);
+    } else {
+      console.error('El objeto de producto es nulo o indefinido, o no tiene un ID válido.');
+    }
+  }
 }
