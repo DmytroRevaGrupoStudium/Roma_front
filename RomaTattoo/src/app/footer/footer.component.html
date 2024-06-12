@@ -1,19 +1,20 @@
 <div class="footer">
-    <div class="container">
+  <div class="container">
       <div class="row align-items-center">
-        <div class="col-md-4">
-          <img src="logo.png" alt="Logo" class="footer-logo">
-          <p class="footer-text">© 2024 {{companyName}}, Inc. Todos los derechos reservados.</p>
-        </div>
-        <div class="col-md-8">
-          <div class="footer-links">
-            <a [routerLink]="['/menu_principal']" class="footer-link">Página principal</a>
-            <a [routerLink]="['/menu_ropa']" class="footer-link">Ropa</a>
-            <a [routerLink]="['/tatuajes']" class="footer-link">Tatuajes</a>
-            <a [routerLink]="['/contacto']" class="footer-link">Contacto</a>
+          <div class="col-md-4 col-sm-12 mb-3 mb-md-0">
+              <div class="d-flex justify-content-center">
+                  <img src="logo.png" alt="Logo" class="footer-logo">
+              </div>
+              <p class="footer-text text-center">© 2024 {{informacion.nombreEmpresa}}, Inc. Todos los derechos reservados.</p>
           </div>
-        </div>
+          <div class="col-md-8 col-sm-12">
+              <div class="footer-links">
+                  <a [routerLink]="['/menu_principal']" class="footer-link">Página principal</a>
+                  <a [routerLink]="['/menu_ropa']" class="footer-link">Ropa</a>
+                  <a [routerLink]="['/tatuajes']" class="footer-link">Tatuajes</a>
+                  <a [routerLink]="['/contacto']" class="footer-link">Contacto</a>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
-  
+</div>

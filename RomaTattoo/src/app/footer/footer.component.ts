@@ -8,11 +8,15 @@ import { InfoService } from '../services/info.service';
 })
 export class FooterComponent {
 
-  companyName: String = '';
-
+  informacion: any = {};
+  
   constructor(
     private infoService: InfoService,
   ) {
-    this.companyName = infoService.companyName;
+    this.infoService.getInformacion().subscribe(datos => {
+      datos.forEach(item => {
+        this.informacion[item.dato] = item.valor;
+      });
+    });
   }
 }

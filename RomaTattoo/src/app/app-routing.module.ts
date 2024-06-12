@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'menu_principal', component: MenuPrincipalComponent },
   { path: 'vista_producto/:id', component: VistaProductoComponent },
   { path: 'menu_ropa', component: MenuRopaComponent },
+  { path: 'menu_ropa/:tipoProducto', component: MenuRopaComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'tatuajes', component: TatuajesComponent },
   { path: 'nuevo_producto', component: NuevoProductoComponent },

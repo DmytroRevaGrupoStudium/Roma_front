@@ -23,12 +23,15 @@
 .product-image img {
   height: 300px;
   width: 300px;
-  overflow: hidden;
-  padding-left: 10%;
-  padding-bottom: 10%;
+  padding-bottom: 5%;
 }
 
-#restablecer
-{
-  color:beige;
+/* Estilo para los dígitos enteros del precio */
+.integer {
+  font-size: 25px; /* Tamaño de fuente más grande para los dígitos enteros */
+}
+
+/* Estilo para los decimales del precio */
+.decimal {
+  font-size: 18px; /* Tamaño de fuente más pequeño para los decimales */
 }

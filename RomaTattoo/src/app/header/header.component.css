@@ -1,35 +1,59 @@
 .header {
     background-color: #198754;
-    padding: 20px 0;
     width: 100%;
-    
+    padding: 10px; /* Añadir espacio alrededor del header */
 }
 
-.header img
-{
-    width: 100px;
-    height: 100px;
-    margin-left: 10%;
-}
-
-.navbar-nav
-{
-    margin-left: 5%;
-}
-
-.navbar-brand
-{
+.navbar-brand {
     color: white;
     font-size: 25px;
+    display: flex; /* Para alinear verticalmente el contenido */
+    align-items: center; /* Para alinear verticalmente el contenido */
 }
 
-.nav-link
-{
+.logo {
+    width: 60px; /* Reducir el tamaño del logo para móviles */
+    height: auto; /* Ajustar la altura automáticamente */
+    margin-right: 10px; /* Añadir margen derecho al logo */
+}
+
+.company-name {
+    margin-left: 10px; /* Añadir margen izquierdo al nombre de la empresa */
+    margin-right: 10px; /* Añadir margen derecho al nombre de la empresa */
+}
+
+.nav-link {
     color: white;
-    font-size: 20px;
+    font-size: 16px; /* Reducir el tamaño de fuente para móviles */
+    margin: 0 5px; /* Añadir un margen de 5px en todos los lados */
+    padding: 5px 10px; /* Añadir relleno de 5px arriba y abajo, y 10px a los lados */
+    border-radius: 15px; /* Aplicar borde redondeado a los enlaces */
 }
 
-.nav-link:hover
-{
-    color: rgb(0, 0, 0);
+/* Cambiar el color de fondo y el texto de la marca cuando se pasa el cursor */
+.nav-link:hover {
+    color: black;
+    background-color: #ffc107;
+}
+
+.navbar-brand:hover {
+    color: black;
+}
+
+/* Estilo de borde circular */
+.navbar-brand,
+.nav-link {
+    border-radius: 20px; /* Ajustar el radio de borde para crear una forma circular */
+}
+
+/* Alinear los enlaces del menú desplegable en una fila en dispositivos móviles */
+@media (max-width: 991.98px) {
+  .navbar-nav.ml-auto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .navbar-nav.ml-auto .nav-item {
+    margin-left: 10px; /* Añadir margen entre los elementos del menú */
+  }
 }

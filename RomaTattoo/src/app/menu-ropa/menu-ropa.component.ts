@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { ProductoService } from '../services/producto.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Producto } from '../models/producto';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-menu-ropa',
@@ -10,20 +10,27 @@ import { Producto } from '../models/producto';
   styleUrls: ['./menu-ropa.component.css']
 })
 export class MenuRopaComponent implements OnInit {
-  products!: any[];
+  products: Producto[] = [];
   filterTypes: { name: string, selected: BehaviorSubject<boolean> }[] = [];
-  filteredProducts!: any[];
+  filteredProducts: Producto[] = [];
 
   constructor(
     private productoService: ProductoService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     // Obtener los productos del servicio al inicializar el componente
     this.productoService.getProducts().subscribe(products => {
       this.products = products;
-      this.initializeFilters();
+      this.route.params.subscribe(params => {
+        const tipoProducto = params['tipoProducto'];
+        this.initializeFilters();
+        if (tipoProducto) {
+          this.filterProducts(tipoProducto);
+        }
+      });
     });
   }
 

@@ -1,7 +1,7 @@
 <div class="container-fluid p-5">
   <div class="row">
     <!-- Barra lateral de filtro -->
-    <aside class="col-2 px-3">
+    <aside class="col-12 col-md-2 px-3"> <!-- Cambiamos col-2 por col-12 -->
       <button class="btn btn-outline-warning mb-4" (click)="resetFilters()">Restablecer</button>
 
       <!-- Opciones de filtro como botones -->
@@ -13,13 +13,16 @@
     <div class="col-md-10">
       <div class="row">
         <div class="col-md-3 border m-1 p-3" *ngFor="let product of filteredProducts">
-          <div class="product-image">
-            <img [src]="product.imagenes[0]" [alt]="product.name">
+          <div class="product-image d-flex justify-content-center align-items-center"> <!-- Agregamos d-flex y alineación vertical y horizontal -->
+            <img [src]="product.imagenes[0]" [alt]="product.nombreProducto">
           </div>
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ product.nombreProducto }}</h5>
             <p class="card-text">{{ product.descripcionCorta }}</p>
-            <h4 class="card-text">{{ product.precio.toFixed(2) }}€</h4>
+            <h4>
+              <span class="integer">{{ product.precio.toFixed(0) }}</span>
+                <sup class="decimal">{{ product.precio.toFixed(2).split('.')[1] }} €</sup>
+            </h4>
             <div class="d-flex justify-content-center">
               <button type="button" class="btn btn-sm btn-outline-success" (click)="verMas(product)">Ver más</button>
             </div>

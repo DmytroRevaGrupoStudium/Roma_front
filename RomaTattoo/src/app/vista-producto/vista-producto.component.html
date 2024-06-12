@@ -2,34 +2,33 @@
   <div class="row">
     <!-- Columna de imágenes adicionales -->
     <div class="col-md-6">
-      <div class="row mb-2">
-        <div class="col-3">
+
+    <img [src]="selectedImage" class="img-fluid" alt="{{ product.nombreProducto }}">
+
+      <div class="row"> <!-- Agregar la clase additional-images-container -->
+        <div class="col-3" *ngFor="let imagen of product.imagenes; let i = index"> <!-- Mover la directiva ngFor a este div -->
           <!-- Iterar sobre las imágenes del producto -->
-          <img *ngFor="let imagen of product.imagenes; let i = index" 
+          <img 
             [src]="imagen" 
-            class="img-fluid mb-2 small-image" 
+            class="img-fluid" 
             [alt]="product.nombreProducto" 
             (click)="selectImage(imagen)">
         </div>        
-        <div class="col">
-          <img [src]="selectedImage" class="img-fluid" alt="{{ product.nombreProducto }}">
-        </div>
       </div>
     </div>
 
     <!-- Columna de la descripción con botón "Comprar" -->
     <div class="col-md-6">
       <div class="row mb-2">
-      </div>
-      <div class="row mb-2">
-        <div class="col">
           <h2>{{ product.nombreProducto }}</h2>
-          <p class="lead">{{ product.descripcionCorta }}</p>
+          <h4>{{ product.descripcionCorta }}</h4>
           <p class="lead">{{ product.descripcionLarga }}</p>
-          <p class="font-weight-bold">{{ product.precio.toFixed(2) }}€
-          </p>
-          <button class="btn btn-success btn-lg">Comprar</button>
-        </div>
+          <!-- Dividir el precio en dos partes para aplicar estilos -->
+          <h4>
+            <span class="integer">{{ product.precio.toFixed(0) }}</span>
+            <sup class="decimal">{{ product.precio.toFixed(2).split('.')[1] }} €</sup>
+          </h4>
+        <button class="btn btn-outline-success">Comprar</button>
       </div>
     </div>
   </div>
