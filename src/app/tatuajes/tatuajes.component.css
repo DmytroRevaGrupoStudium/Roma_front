@@ -1,64 +1,24 @@
-/* CSS para el carrousel */
-#carouselExampleSlidesOnly {
-    background-image: url('/background.jpg'); /* Reemplaza 'ruta/de/la/imagen.jpg' con la ruta de tu imagen */
-    background-size: cover; /* Para asegurarse de que la imagen cubra todo el contenedor */
-    background-repeat: no-repeat; /* Para evitar que la imagen se repita */
+.logo
+{
+    width: 120px;
+    height: auto;
+    padding-bottom: 20px;
 }
 
-/* Estilo para la imagen del producto */
-.card-img-top {
-    width: 300px; /* Tamaño máximo de la imagen para dispositivos móviles */
-    height: 300px; /* Tamaño máximo de la imagen para dispositivos móviles */
-}
-
-/* Estilo para la imagen del producto en dispositivos más grandes */
-@media (min-width: 768px) {
-    .card-img-top {
-        width: 500px; /* Tamaño máximo de la imagen para dispositivos más grandes */
-        height: 500px; /* Tamaño máximo de la imagen para dispositivos más grandes */
-    }
-}
-
-/* Estilo para el cuerpo de la tarjeta (descripción del producto) */
-.card-body {
-    padding: 1rem;
-}
-
-/* Estilo para el botón "Obtener cita" */
-.btn-outline-success {
-    margin-top: 1rem;
-}
-
-/* Estilo para la tarjeta */
-.card {
-    background-color: beige;
-}
-
-/* Estilo para el separador */
-.separador {
-    text-align: center;
-    margin-top: 5%;
-}
-
-/* Estilo para la fila */
 .row {
-    margin-bottom: 5%;
+    margin-bottom: 30px; /* Espacio entre las filas de contenido */
 }
 
-/* Estilo para la imagen dentro de la tarjeta */
-img {
-    background-color: white;
-}
-
-/* Estilo para el texto adicional */
 .container {
-    margin-top: 5%;
+    background-color: #f9f9f9;
+    padding: 50px 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-h2 {
-    margin-bottom: 2rem;
-}
-
-p {
-    margin-bottom: 1.5rem;
-}
+.tatuaje-image img {
+    height: 300px;
+    width: 300px;
+    padding-bottom: 5%;
+  }

@@ -5,18 +5,31 @@
     background-color: #f8f9fa;
     transition: background-color 0.3s ease;
   }
+
+  .filter-option-todo {
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #c7c7c7;
+    transition: background-color 0.3s ease;
+    margin-bottom: 5%;
+  }
   
   .filter-option:hover {
     background-color: #e9ecef;
   }
 
+  .filter-option-todo:hover {
+    background-color: #b4b4b4;
+  }
+
   .selected {
-    background-color: #198754;
+    background-color: #b3b3b3;
     color: white; /* Cambia el color del texto para que sea visible sobre el fondo azul */
   }
 
   .selected:hover {
-    background-color: #084428; /* Cambia el color de fondo al hacer hover sobre un filtro seleccionado */
+    background-color: #969696; /* Cambia el color de fondo al hacer hover sobre un filtro seleccionado */
   }
 
 /* Estilos para el contenido principal de productos */

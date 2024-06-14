@@ -22,21 +22,25 @@
       </ul>
     </div>
 
-      <!-- Mostrar nombre del usuario o botón de inicio de sesión -->
-      <div class = "loginblock">
-        <ul class="navbar-nav">
-          <li class="nav-item" *ngIf="isAuthenticated; else loginBlock">
-            <span class="welcome-text">{{ userName }}</span>
-            <button class="nav-link btn btn-primary btn-logout" (click)="logout()">Cerrar sesión</button>
+    <div class="loginblock">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown" *ngIf="isAuthenticated; else loginBlock">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ userName }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item">Perfil</a>
+            <a class="dropdown-item">Configuración</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+          </div>
+        </li>
+        <ng-template #loginBlock>
+          <li>
+            <a class="nav-link login-link" [routerLink]="['/auth']">Iniciar sesión</a>
           </li>
-          <ng-template #loginBlock>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/auth']">Iniciar sesión</a>
-            </li>
-          </ng-template>
-        </ul>
-      </div>
-
-    
+        </ng-template>
+      </ul>
+    </div>
   </nav>
 </div>

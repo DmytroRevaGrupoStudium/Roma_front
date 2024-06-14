@@ -2,7 +2,7 @@
   <div class="row">
     <!-- Barra lateral de filtro -->
     <aside class="col-12 col-md-2 px-3"> <!-- Cambiamos col-2 por col-12 -->
-      <button class="btn btn-outline-warning mb-4" (click)="resetFilters()">Restablecer</button>
+      <div class="filter-option-todo" (click)="resetFilters()">Restablecer</div>
 
       <!-- Opciones de filtro como botones -->
       <div class="filter-option" *ngFor="let filter of filterTypes" [ngClass]="{ 'selected': filter.selected | async }" (click)="filterProducts(filter.name)">

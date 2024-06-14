@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { InfoService } from './info.service';
 
@@ -14,7 +14,18 @@ export class TatuajeService {
   }
 
   guardarTatuaje(tatuaje: any): Observable<any> {
-    return this.http.post(this.apiUrl, tatuaje);
+
+  // Obtener el token de localStorage (o de donde lo tengas almacenado)
+  const token = localStorage.getItem('token'); // Asumiendo que el token está en localStorage
+
+  // Crear los encabezados HTTP con el token
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  });
+
+  // Hacer la solicitud POST con los encabezados
+  return this.http.post(this.apiUrl, tatuaje, { headers: headers });
   }
 
   getTatuajes(): Observable<any[]> {

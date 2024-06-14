@@ -3,6 +3,8 @@ import { ProductoService } from '../services/producto.service';
 import { Router } from '@angular/router';
 import { Producto } from '../models/producto';
 import { TipoProductoService } from '../services/tipo-producto.service';
+import { TatuajeService } from '../services/tatuaje.service';
+import { InfoService } from '../services/info.service';
 
 declare var $: any;
 
@@ -14,30 +16,53 @@ declare var $: any;
 export class MenuPrincipalComponent {
   products!: any[];
   tiposProductos!: any[];
+  tatuajes!: any[];
+  informacion: any = {};
 
   constructor(
     private productoService: ProductoService,
     private router: Router,
-    private tipoProductoService: TipoProductoService
+    private tipoProductoService: TipoProductoService,
+    private tatuajeService: TatuajeService,
+    private infoService: InfoService
   ) {}
 
   ngOnInit(): void {
     // Obtener los productos del servicio al inicializar el componente
     this.productoService.getProducts().subscribe(products => {
       this.products = products;
+
+      // Filtrar productos para el carrusel de productos
+      this.filterProductosCarrousel();
     });
 
     this.tipoProductoService.getTiposProducts().subscribe(tiposProductos => {
       this.tiposProductos = tiposProductos;
     });
+
+    this.tatuajeService.getTatuajes().subscribe(tatuajes => {
+      this.tatuajes = tatuajes;
+    });
+
+    this.infoService.getInformacion().subscribe(datos => {
+      datos.forEach(item => {
+        this.informacion[item.dato] = item.valor;
+      });
+    });
   }
 
-  verMas(product: Producto): void {
-    if (product && product.id) {
-      console.log(product.id);
-      this.router.navigate(['/vista_producto', product.id]);
-    } else {
-      console.error('El objeto de producto es nulo o indefinido, o no tiene un ID válido.');
-    }
+  filterProductosCarrousel(): void {
+    const imagenesCarrouselProductos: any[] = [];
+    const tipoProductosVistos = new Set<string>();
+
+    // Iterar sobre los productos y agregar al carrousel hasta tener 5 productos diferentes
+    this.products.forEach(producto => {
+      if (tipoProductosVistos.size < 5 && !tipoProductosVistos.has(producto.tipoProducto)) {
+        tipoProductosVistos.add(producto.tipoProducto);
+        imagenesCarrouselProductos.push(producto);
+      }
+    });
+
+    this.products = imagenesCarrouselProductos;
   }
 }

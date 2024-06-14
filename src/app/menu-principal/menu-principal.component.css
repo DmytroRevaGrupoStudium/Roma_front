@@ -1,47 +1,91 @@
-/* CSS para el carrousel */
-
-#carouselExampleSlidesOnly {
-    background-image: url('/background.jpg'); /* Reemplaza 'ruta/de/la/imagen.jpg' con la ruta de tu imagen */
-    background-size: cover; /* Para asegurarse de que la imagen cubra todo el contenedor */
-    background-repeat: no-repeat; /* Para evitar que la imagen se repita */
+/* Estilo para los controles de carrusel */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    margin: 1%
 }
 
-/* Estilo para la imagen del producto */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 25px; /* Tamaño de los íconos de control */
+    height: 25px;
+    background-color: #8a8a8a; /* Color de las flechas */
+    border-radius: 50%;
+}
+
+h2 {
+    color: #333;
+    font-weight: bold;
+}
+
+.container {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajuste de espaciado entre bloques */
+.carousel {
+    margin-top: 50px;
+    margin-bottom: 50px; /* Espacio entre los carruseles */
+}
+
+.row {
+    margin-bottom: 30px; /* Espacio entre las filas de contenido */
+}
+
+.logo
+{
+    width: 120px;
+    height: auto;
+    padding-bottom: 20px;
+}
+
+.card img
+{
+    width: 400px;
+    height: 400px;
+}
+
+/* Estilo para las tarjetas de productos y tatuajes */
+.card {
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: box-shadow 0.3s ease; /* Transición suave de sombra */
+    display: flex;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
+
 .card-img-top {
-    height: 300px; /* Altura predeterminada */
-    width: 300px; /* Ancho automático para mantener la proporción */
+    max-width: 100%; /* Ancho máximo del contenedor */
+    max-height: 100%; /* Altura máxima del contenedor */
+    width: auto; /* Ancho automático para mantener la proporción */
+    height: auto; /* Altura automática para mantener la proporción */
+    object-fit: contain; /* Ajusta la imagen para contenerse dentro del contenedor */
 }
 
-/* Estilo para la imagen del producto en dispositivos más grandes */
-@media (min-width: 768px) {
-    .card-img-top {
-        height: 500px;
-        width: 500px; /* Altura para dispositivos más grandes */
-    }
-}
-
-/* Estilo para el cuerpo de la tarjeta (descripción del producto) */
 .card-body {
-    padding: 1rem;
+    width: 50%; /* Ancho fijo para el cuerpo de la tarjeta */
+    padding: 1rem; /* Añade un poco de espacio interior */
 }
 
-/* Estilo para el botón "Ver más" */
 .btn-ver-mas {
-    margin-top: 1rem;
+    margin-top: 1rem; /* Margen superior para separar el botón */
 }
 
-.card
-{
-    background-color: beige;
+.dark-background {
+    background-color: #f7f7f7;
+    padding: 20px; /* Espaciado interno para mayor legibilidad */
+    border-radius: 10px; /* Borde redondeado */
 }
 
-.separador
+.backgorund-text
 {
-    text-align: center;
-    margin-top: 5%;
-}
-
-.row
-{
-    margin-bottom: 5%;
+    background-color: #f7f7f7;
+    width: 45%;
 }
