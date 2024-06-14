@@ -11,16 +11,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NuevoProductoComponent {
 
-  formularioProducto!: FormGroup; // Definir el FormGroup
+  formularioProducto!: FormGroup;
 
-  imagenes: string[] = [];
+  imagenPrincipal: string = '';
+  imagenesAdicionales: string[] = [];
 
   tiposDeProductos: TipoProducto[] = [];
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   constructor(
-    private fb: FormBuilder, // Inyectar FormBuilder
+    private fb: FormBuilder,
     private productoService: ProductoService,
     private tipoProductoService: TipoProductoService
   ) {
@@ -56,12 +57,12 @@ export class NuevoProductoComponent {
       const reader = new FileReader();
       reader.onload = (e) => {
         const result = e.target?.result as string;
-        const imageElements = document.querySelectorAll('.small-image');
-        if (imageElements[index]) {
-          imageElements[index].setAttribute('src', result);
+        
+        if (index === 0) {
+          this.imagenPrincipal = result;
+        } else if (index >= 1 && index <= 4) {
+          this.imagenesAdicionales[index - 1] = result;
         }
-        // Almacena la imagen en base64
-        this.imagenes[index] = result;
       };
       reader.readAsDataURL(file);
     }
@@ -69,26 +70,43 @@ export class NuevoProductoComponent {
 
   guardarProducto() {
     if (this.formularioProducto.invalid) {
-        // Si el formulario no es válido, muestra un mensaje de error o resalta los campos incorrectos
-        return;
+      // Si el formulario no es válido, muestra un mensaje de error o resalta los campos incorrectos
+      return;
     }
 
     // Obtener los datos del formulario
     const productoDatos = this.formularioProducto.value;
-    productoDatos.imagenes = this.imagenes;
+
+    // Crear el array de imágenes según el formato deseado
+    const imagenesParaGuardar: string[] = [this.imagenPrincipal];
+    for (let i = 0; i < this.imagenesAdicionales.length; i++) {
+        imagenesParaGuardar.push(this.imagenesAdicionales[i]);
+    }
+
+    productoDatos.imagenes = imagenesParaGuardar;
 
     // Llama al servicio para guardar el producto
     this.productoService.guardarProducto(productoDatos).subscribe({
-        next: response => {
-            console.log('Producto guardado:', response);
-        },
-        error: error => {
-            console.error('Error al guardar el producto:', error);
-        }
+      next: response => {
+        console.log('Producto guardado:', response);
+        window.location.reload();
+      },
+      error: error => {
+        console.error('Error al guardar el producto:', error);
+        // Manejo de errores: mostrar un mensaje al usuario, por ejemplo
+      }
     });
-}
+  }
 
-todasLasImagenesPredeterminadas(): boolean {
-  return this.imagenes.every((image: string) => image === 'addImage.png');
-}
+  hayImagenes(): boolean {
+    // Verifica si la imagen principal no está vacía
+    const imagenPrincipalNoVacia = this.imagenPrincipal.trim() !== '';
+  
+    // Verifica si hay al menos una imagen adicional que no esté vacía
+    const algunaImagenAdicionalNoVacia = this.imagenesAdicionales.some(image => image.trim() !== '');
+  
+    // Devuelve true si la imagen principal no está vacía o si hay al menos una imagen adicional que no está vacía
+    return imagenPrincipalNoVacia || algunaImagenAdicionalNoVacia;
+  }
+
 }

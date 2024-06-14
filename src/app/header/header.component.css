@@ -2,58 +2,59 @@
     background-color: #198754;
     width: 100%;
     padding: 10px; /* Añadir espacio alrededor del header */
-}
-
-.navbar-brand {
+  }
+  
+  .navbar-brand {
     color: white;
     font-size: 25px;
     display: flex; /* Para alinear verticalmente el contenido */
     align-items: center; /* Para alinear verticalmente el contenido */
-}
-
-.logo {
+  }
+  
+  .logo {
     width: 60px; /* Reducir el tamaño del logo para móviles */
     height: auto; /* Ajustar la altura automáticamente */
-    margin-right: 10px; /* Añadir margen derecho al logo */
-}
-
-.company-name {
-    margin-left: 10px; /* Añadir margen izquierdo al nombre de la empresa */
-    margin-right: 10px; /* Añadir margen derecho al nombre de la empresa */
-}
-
-.nav-link {
+    margin-left: 30px;
+  }
+  
+  .nav-link {
     color: white;
     font-size: 16px; /* Reducir el tamaño de fuente para móviles */
-    margin: 0 5px; /* Añadir un margen de 5px en todos los lados */
+    margin-left: 25px; /* Añadir un margen de 5px en todos los lados */
     padding: 5px 10px; /* Añadir relleno de 5px arriba y abajo, y 10px a los lados */
     border-radius: 15px; /* Aplicar borde redondeado a los enlaces */
-}
-
-/* Cambiar el color de fondo y el texto de la marca cuando se pasa el cursor */
-.nav-link:hover {
+  }
+  
+  /* Cambiar el color de fondo y el texto de la marca cuando se pasa el cursor */
+  .nav-link:hover {
     color: black;
     background-color: #ffc107;
-}
-
-.navbar-brand:hover {
+  }
+  
+  .navbar-brand:hover {
     color: black;
-}
-
-/* Estilo de borde circular */
-.navbar-brand,
-.nav-link {
+  }
+  
+  /* Estilo de borde circular */
+  .navbar-brand,
+  .nav-link {
     border-radius: 20px; /* Ajustar el radio de borde para crear una forma circular */
-}
-
-/* Alinear los enlaces del menú desplegable en una fila en dispositivos móviles */
-@media (max-width: 991.98px) {
-  .navbar-nav.ml-auto {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
   }
-  .navbar-nav.ml-auto .nav-item {
-    margin-left: 10px; /* Añadir margen entre los elementos del menú */
+  
+  /* Estilos específicos para el bloque de bienvenida y botón de cerrar sesión */  
+  .welcome-text {
+    color: white;
+    margin-right: 15px; /* Añadir espacio entre el texto y el botón */
   }
-}
+  
+  .btn-logout {
+    background-color: #007bff; /* Color de fondo azul */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 8px 16px; /* Ajuste de relleno */
+    border-radius: 5px; /* Borde redondeado */
+  }
+  
+  .btn-logout:hover {
+    background-color: #0056b3; /* Cambio de color al pasar el cursor */
+  }  

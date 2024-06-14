@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { NuevoTatuajeComponent } from './nuevo-tatuaje/nuevo-tatuaje.component';
 import { NuevoTipoProductoComponent } from './nuevo-tipo-producto/nuevo-tipo-producto.component';
+import { AuthComponent } from './auth/auth.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,19 @@ import { NuevoTipoProductoComponent } from './nuevo-tipo-producto/nuevo-tipo-pro
     NuevoProductoComponent,
     NuevoTatuajeComponent,
     NuevoTipoProductoComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('token'), // Función para obtener el token de localStorage
+      }
+    }),
+
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]

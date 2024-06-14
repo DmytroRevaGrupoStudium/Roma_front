@@ -31,10 +31,11 @@ export class NuevoTipoProductoComponent {
     // Llama al servicio para guardar el Tatuaje
     this.tipoProductoService.guardarTipoProducto(tipoProductoDatos).subscribe({
         next: response => {
-            console.log('Tatuaje guardado:', response);
+            console.log('Tipo de producto guardado:', response);
+            window.location.reload();
         },
         error: error => {
-            console.error('Error al guardar el Tatuaje:', error);
+            console.error('Error al guardar el tipo d eproducto:', error);
         }
     });
 }

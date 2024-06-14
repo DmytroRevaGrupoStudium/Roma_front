@@ -1,17 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { InfoService } from './info.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
-  private apiUrl = 'http://172.29.192.13:8080/productos'; // Cambia la URL a tu endpoint real
+  private apiUrl = 'productos'; // Cambia la URL a tu endpoint real
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private infoService: InfoService) {
+    this.apiUrl = this.infoService.getAuthUrl()+this.apiUrl;
+  }
 
   guardarProducto(producto: any): Observable<any> {
-    return this.http.post(this.apiUrl, producto);
+    // Obtener el token de localStorage (o de donde lo tengas almacenado)
+    const token = localStorage.getItem('token'); // Asumiendo que el token está en localStorage
+
+    // Crear los encabezados HTTP con el token
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    // Hacer la solicitud POST con los encabezados
+    return this.http.post(this.apiUrl, producto, { headers: headers });
   }
 
   getProducts(): Observable<any[]> {

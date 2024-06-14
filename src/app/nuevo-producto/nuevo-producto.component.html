@@ -4,11 +4,11 @@
         <div class="col-md-6">
             <div class="row mb-2">
                 <div class="col-3">
-                    <img src="addImage.png" class="img-fluid mb-2 small-image empty-image" alt="Empty Image" *ngFor="let image of [0, 1, 2, 3];" (click)="openFilePicker(image)">
+                    <img src="{{ imagenesAdicionales[image - 1] ? imagenesAdicionales[image - 1] : 'addImage.png' }}" class="img-fluid mb-2 small-image empty-image" alt="Empty Image# {{image}}" *ngFor="let image of [1, 2, 3, 4];" (click)="openFilePicker(image)">
                 </div>
                 <div class="col">
                     <!-- Imagen principal -->
-                    <img src="addImage.png" class="img-fluid mb-2 small-image empty-image" alt="Empty Image" (click)="openFilePicker(4)">
+                    <img src="{{imagenPrincipal ? imagenPrincipal: 'addImage.png'}}" class="img-fluid mb-2 small-image empty-image" alt="Empty First Image" (click)="openFilePicker(0)">
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                     </select>
                 </div>
                 <!-- Botón de guardar -->
-                <button type="submit" class="btn btn-success" [disabled]="formularioProducto.invalid || todasLasImagenesPredeterminadas()">Guardar</button>
+                <button type="submit" class="btn btn-success" [disabled]="formularioProducto.invalid || !hayImagenes()">Guardar</button>
             </form>
         </div>
     </div>

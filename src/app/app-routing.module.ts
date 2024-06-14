@@ -8,6 +8,8 @@ import { TatuajesComponent } from './tatuajes/tatuajes.component';
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
 import { NuevoTatuajeComponent } from './nuevo-tatuaje/nuevo-tatuaje.component';
 import { NuevoTipoProductoComponent } from './nuevo-tipo-producto/nuevo-tipo-producto.component';
+import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/role.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu_principal', pathMatch: 'full' },
@@ -17,9 +19,10 @@ const routes: Routes = [
   { path: 'menu_ropa/:tipoProducto', component: MenuRopaComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'tatuajes', component: TatuajesComponent },
-  { path: 'nuevo_producto', component: NuevoProductoComponent },
-  { path: 'nuevo_tatuaje', component: NuevoTatuajeComponent },
-  { path: 'nuevo_tipo_producto', component: NuevoTipoProductoComponent }
+  { path: 'auth', component: AuthComponent },
+  { path: 'nuevo_producto', component: NuevoProductoComponent, canActivate: [AuthGuard] },
+  { path: 'nuevo_tatuaje', component: NuevoTatuajeComponent, canActivate: [AuthGuard]  },
+  { path: 'nuevo_tipo_producto', component: NuevoTipoProductoComponent, canActivate: [AuthGuard]  },
 ];
 
 @NgModule({

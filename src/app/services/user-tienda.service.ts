@@ -1,0 +1,30 @@
+// src/app/services/user.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { InfoService } from './info.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserTiendaService {
+  private apiUrl = 'user_tienda';
+
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private infoService: InfoService) { 
+    this.apiUrl = this.infoService.getAuthUrl()+this.apiUrl;
+  }
+
+  getUserName(): Observable<string> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return of(''); // Si no hay token, devuelve un Observable con una cadena vacía
+    }
+
+    const email = this.jwtHelper.decodeToken(token).sub;
+    return this.http.get<any>(`${this.apiUrl}/${email}`).pipe(
+      map(user => user.nombre)
+    );
+  }
+}

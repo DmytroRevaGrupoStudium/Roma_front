@@ -12,7 +12,7 @@
     <!-- Contenido principal de productos -->
     <div class="col-md-10">
       <div class="row">
-        <div class="col-md-3 border m-1 p-3" *ngFor="let product of filteredProducts">
+        <div type="button" class="col-md-3 border m-1 p-3" *ngFor="let product of filteredProducts" (click)="verMas(product)">
           <div class="product-image d-flex justify-content-center align-items-center"> <!-- Agregamos d-flex y alineación vertical y horizontal -->
             <img [src]="product.imagenes[0]" [alt]="product.nombreProducto">
           </div>
@@ -23,9 +23,6 @@
               <span class="integer">{{ product.precio.toFixed(0) }}</span>
                 <sup class="decimal">{{ product.precio.toFixed(2).split('.')[1] }} €</sup>
             </h4>
-            <div class="d-flex justify-content-center">
-              <button type="button" class="btn btn-sm btn-outline-success" (click)="verMas(product)">Ver más</button>
-            </div>
           </div>
         </div>
       </div>

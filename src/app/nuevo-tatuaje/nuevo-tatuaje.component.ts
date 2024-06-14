@@ -67,6 +67,7 @@ export class NuevoTatuajeComponent {
     this.tatuajeService.guardarTatuaje(tatuajeDatos).subscribe({
         next: response => {
             console.log('Tatuaje guardado:', response);
+            window.location.reload();
         },
         error: error => {
             console.error('Error al guardar el Tatuaje:', error);

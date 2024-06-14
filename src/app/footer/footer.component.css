@@ -6,8 +6,9 @@
 }
 
 .footer-logo {
-    width: 60px; /* Tamaño del logo ajustado para dispositivos móviles */
+    width: 100px; /* Tamaño del logo ajustado para dispositivos móviles */
     height: auto; /* Altura automática para mantener la proporción */
+    margin: 10px
 }
 
 .footer-text {
