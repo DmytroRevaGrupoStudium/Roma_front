@@ -1,28 +1,24 @@
-.header
-{
+.header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   background-color: #000000;
-  color:white
+  color: white;
+  padding: 0 15px; /* Añadir padding para mantener espacio a los lados */
 }
 
 .logo {
   width: 60px;
   height: auto;
-  margin-left: 30px;
+  margin-left: 15px; /* Añadir margen a la izquierda */
 }
 
 .nav-link {
   font-size: 16px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
   color: #ffffff;
 }
 
 .nav-link:hover {
   color: rgb(185, 185, 185);
-}
-
-.loginblock {
-  margin-right: 50px;
 }
 
 .login-link {
@@ -39,34 +35,27 @@
 
 @media (max-width: 992px) {
   .logo {
-    margin-left: 0;
+    margin-left: 15px; /* Mantener margen a la izquierda en pantallas pequeñas */
   }
 
-  .nav-link {
-    margin-left: 0;
+  .nav-link,
+  .login-link {
     padding: 10px 20px;
-    text-align: center;
-  }
-
-  .nav-divider {
-    display: none;
-  }
-
-  .loginblock {
-    margin-right: 0;
+    flex-direction: row;
   }
 }
 
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .navbar-collapse {
     text-align: center;
   }
+}
 
-  .nav-item {
-    margin-bottom: 10px;
-  }
+.loginblock
+{
+  margin-right: 3%;
 }

@@ -17,8 +17,19 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.tatuaje-image img {
+.product-image img {
     height: 300px;
     width: 300px;
     padding-bottom: 5%;
   }
+
+  .product-image
+{
+  background-color: white;
+}
+
+.estilo-card-productos
+{
+  background-color: black;
+  color:white;
+}
