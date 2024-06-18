@@ -88,4 +88,7 @@ h2 {
 {
     background-color: #f7f7f7;
     width: 45%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000;
 }
