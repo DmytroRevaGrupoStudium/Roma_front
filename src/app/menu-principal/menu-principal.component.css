@@ -86,9 +86,7 @@ h2 {
 
 .backgorund-text
 {
-    background-color: #f7f7f7;
+    background-color: #000000;
     width: 45%;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #000;
+    color: white;
 }
