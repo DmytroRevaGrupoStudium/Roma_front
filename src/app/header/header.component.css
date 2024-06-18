@@ -2,13 +2,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   background-color: #000000;
   color: white;
-  padding: 0 15px; /* Añadir padding para mantener espacio a los lados */
+  padding: 0 15px;
 }
 
 .logo {
   width: 60px;
   height: auto;
-  margin-left: 15px; /* Añadir margen a la izquierda */
+  margin-left: 15px;
 }
 
 .nav-link {
@@ -33,29 +33,60 @@
   border-radius: 4px;
 }
 
+.loginblock {
+  margin-right: 3%;
+}
+
+/* Estilos para vista móvil */
 @media (max-width: 992px) {
   .logo {
-    margin-left: 15px; /* Mantener margen a la izquierda en pantallas pequeñas */
+    margin-left: 0;
   }
 
   .nav-link,
   .login-link {
     padding: 10px 20px;
-    flex-direction: row;
+    text-align: center;
+  }
+
+  .navbar-toggler {
+    border-color: #ffffff;
+    background-color: white;
+  }
+
+  .loginblock {
+    margin-right: 0;
   }
 }
 
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: row;
+    justify-content: space-around; /* Espaciar los elementos */
+    width: 100%; /* Asegurar que ocupe toda la anchura disponible */
   }
 
-  .navbar-collapse {
-    text-align: center;
+  .navbar-nav {
+    flex-direction: row; /* Mantener dirección como fila para móviles */
   }
-}
 
-.loginblock
-{
-  margin-right: 3%;
+  .nav-item {
+    width: auto; /* Ajustar el ancho de los elementos según el contenido */
+    padding-top: 10%;
+  }
+
+  .nav-item {
+    width: 100%; /* Asegurarse de que cada elemento ocupe toda la anchura */
+  }
+
+  .navbar-brand {
+    order: 1; /* Primero el logo */
+  }
+
+  .loginblock {
+    order: 2; /* Segundo el bloque de login */
+  }
+
+  .navbar-toggler {
+    order: 3; /* Tercero el botón de menú */
+  }
 }
