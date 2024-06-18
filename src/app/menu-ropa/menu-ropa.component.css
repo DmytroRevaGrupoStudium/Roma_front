@@ -39,6 +39,11 @@
   padding-bottom: 5%;
 }
 
+.product-image
+{
+  background-color: white;
+}
+
 /* Estilo para los dígitos enteros del precio */
 .integer {
   font-size: 25px; /* Tamaño de fuente más grande para los dígitos enteros */
@@ -49,7 +54,8 @@
   font-size: 18px; /* Tamaño de fuente más pequeño para los decimales */
 }
 
-.productos
+.estilo-card-productos
 {
-  background-color: white;
+  background-color: black;
+  color:white;
 }
