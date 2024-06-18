@@ -1,7 +1,8 @@
 .footer
 {
-    background-color: #e7e7e7;
+    background-color: #000000;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3); /* Sombra hacia arriba */
+    color:white;
 }
 
 .footer-logo {
@@ -20,11 +21,11 @@
 }
 
 .footer-link {
-    color: #575757;
+    color: #ffffff;
     text-decoration: none;
     margin: 0 10px;
 }
 
 .footer-link:hover {
-    color:black
+    color: rgb(185, 185, 185);
 }
