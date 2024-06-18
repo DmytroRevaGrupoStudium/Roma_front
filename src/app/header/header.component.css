@@ -1,7 +1,8 @@
 .header
 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  background-color: #e7e7e7;
+  background-color: #000000;
+  color:white
 }
 
 .logo {
@@ -13,11 +14,11 @@
 .nav-link {
   font-size: 16px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  color: #575757;
+  color: #ffffff;
 }
 
 .nav-link:hover {
-  color: black;
+  color: rgb(185, 185, 185);
 }
 
 .loginblock {
