@@ -1,10 +1,10 @@
 <!-- Carrusel de tatuajes -->
 <div id="carouselTatuajes" class="carousel slide mt-5" data-ride="carousel" data-interval="5000">
     <div class="carousel-inner p-4">
-        <div class="dark-background">
-            <p>Mejores diseños de tatuaje lo encontrará en Roma:</p>
+        <div class="carrousel-title text-center dark-background fs-5">
+            <p><strong>Diseños destacados:</strong></p>
         </div>
-        <div *ngFor="let tatuaje of tatuajes; let i = index" class="carousel-item dark-background" [ngClass]="{'active': i === 0}">
+        <div *ngFor="let tatuaje of tatuajes; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
             <div class="card product-card mx-auto p-4">
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -33,11 +33,11 @@
 
 <!-- Carrusel de productos -->
 <div id="carouselProductos" class="carousel slide" data-ride="carousel" data-interval="5000">
-    <div class="carousel-inner p-4">
-        <div class="dark-background">
-            <p>Ofrecemos muchos tipos de ropa:</p>
+    <div class="carousel-inner p-2">
+        <div class="carrousel-title text-center dark-background fs-5">
+            <p class=""><strong>Ropa destacada:</strong></p>
         </div>
-        <div *ngFor="let product of products; let i = index" class="carousel-item dark-background" [ngClass]="{'active': i === 0}">
+        <div *ngFor="let product of products; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
             <div class="card product-card mx-auto p-4">
                 <div class="row align-items-center">
                     <div class="col-md-6">

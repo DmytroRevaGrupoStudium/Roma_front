@@ -1,11 +1,11 @@
 .footer
 {
-  background-color: #f7f7f7;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3); /* Sombra hacia arriba */
+    background-color: #e7e7e7;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3); /* Sombra hacia arriba */
 }
 
 .footer-logo {
-    width: 100px;
+    width: 60px;
     height: auto;
     margin: 10px
 }
