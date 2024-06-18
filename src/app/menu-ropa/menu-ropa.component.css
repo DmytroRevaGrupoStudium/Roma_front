@@ -48,3 +48,8 @@
 .decimal {
   font-size: 18px; /* Tamaño de fuente más pequeño para los decimales */
 }
+
+.productos
+{
+  background-color: white;
+}

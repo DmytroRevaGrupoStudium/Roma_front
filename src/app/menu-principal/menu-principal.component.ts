@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
 import { Router } from '@angular/router';
-import { Producto } from '../models/producto';
 import { TipoProductoService } from '../services/tipo-producto.service';
 import { TatuajeService } from '../services/tatuaje.service';
 import { InfoService } from '../services/info.service';
