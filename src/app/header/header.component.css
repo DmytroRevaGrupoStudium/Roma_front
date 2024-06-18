@@ -35,6 +35,7 @@
 
 .loginblock {
   margin-right: 3%;
+  transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
 }
 
 /* Estilos para vista móvil */
@@ -43,8 +44,7 @@
     margin-left: 0;
   }
 
-  .nav-link,
-  .login-link {
+  .nav-link {
     padding: 10px 20px;
     text-align: center;
   }
@@ -52,10 +52,6 @@
   .navbar-toggler {
     border-color: #ffffff;
     background-color: white;
-  }
-
-  .loginblock {
-    margin-right: 0;
   }
 }
 
@@ -67,11 +63,6 @@
 
   .navbar-nav {
     flex-direction: row; /* Mantener dirección como fila para móviles */
-  }
-
-  .nav-item {
-    width: auto; /* Ajustar el ancho de los elementos según el contenido */
-    padding-top: 10%;
   }
 
   .nav-item {

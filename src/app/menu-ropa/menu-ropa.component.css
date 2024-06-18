@@ -2,7 +2,7 @@
     cursor: pointer;
     padding: 10px;
     margin-bottom: 5px;
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     transition: background-color 0.3s ease;
   }
 
@@ -10,13 +10,14 @@
     cursor: pointer;
     padding: 10px;
     margin-bottom: 5px;
-    background-color: #c7c7c7;
+    background-color: #000000;
+    color: white;
     transition: background-color 0.3s ease;
     margin-bottom: 5%;
   }
   
   .filter-option:hover {
-    background-color: #e9ecef;
+    background-color: #6e6e6e;
   }
 
   .filter-option-todo:hover {
@@ -24,7 +25,7 @@
   }
 
   .selected {
-    background-color: #b3b3b3;
+    background-color: #000000;
     color: white; /* Cambia el color del texto para que sea visible sobre el fondo azul */
   }
 
