@@ -11,7 +11,7 @@
                         <img class="card-img-top mx-auto d-block" [src]="tatuaje.imagenes[0]" [alt]="tatuaje.nombreTatuaje">
                     </div>
                     <div class="col-md-6">
-                        <div class="backgorund-text card-body">
+                        <div class="backgorund-text card-body text-center text-md-left">
                             <h5 class="card-title">{{ tatuaje.nombreTatuaje }}</h5>
                             <p class="card-text">
                                 {{ tatuaje.descripcion }}
@@ -44,7 +44,7 @@
                         <img class="card-img-top mx-auto d-block" [src]="product.imagenes[0]" [alt]="product.nombreProducto">
                     </div>
                     <div class="col-md-6">
-                        <div class="backgorund-text card-body">
+                        <div class="backgorund-text card-body text-center text-md-left">
                             <h5 class="card-title">Explora {{product.tipoProducto}} de {{informacion.nombreEmpresa}}</h5>
                             <p class="card-text">{{ product.nombreProducto }}</p>
                             <p class="card-text">{{ product.descripcionLarga }}</p>
@@ -57,7 +57,6 @@
             </div>
         </div>
     </div>
-
     <!-- Controles de avance y retroceso -->
     <a class="carousel-control-prev" href="#carouselProductos" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -68,7 +67,7 @@
 </div>
 
 <!-- Contenido adicional "Sobre Nosotros" -->
-<div class="container mt-5">
+<div class="container">
     <div class="row">
         <div class="col text-center">
             <img src="logo.png" class="logo mx-auto d-block" alt="Logo">
