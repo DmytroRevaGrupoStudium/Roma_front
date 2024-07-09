@@ -34,8 +34,6 @@ export class AuthService {
   tokenValidation(): Observable<boolean> {
     const token = localStorage.getItem('token');
 
-    console.log("Token: "+token)
-
     const isAuthenticated = !!token; // Verifica que token tenga un valor válido
   
     return of(isAuthenticated);
@@ -44,23 +42,11 @@ export class AuthService {
   isAdmin(): Observable<boolean> {
     const token = localStorage.getItem('token');
 
-    console.log("Token: "+token)
-
     if (token) {
-
 
       const tokenPayload = this.jwtHelper.decodeToken(token);
 
-
-      console.log("Decodificó")
-
       const isAdmin = tokenPayload.rol === 'ADMIN';
-
-      if (isAdmin) {
-        console.log("Usuario ADMIN");
-      } else {
-        console.log("Usuario USER");
-      }
 
       return of(isAdmin)
     } else {
