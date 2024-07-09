@@ -35,7 +35,7 @@
 <div id="carouselProductos" class="carousel slide mt-5" data-ride="carousel" data-interval="5000">
     <div class="carousel-inner p-4">
         <div class="carrousel-title text-center dark-background fs-5">
-            <p class=""><strong>Ropa destacada:</strong></p>
+            <p><strong>Ropa destacada:</strong></p>
         </div>
         <div *ngFor="let product of products; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
             <div class="card product-card mx-auto p-4">
