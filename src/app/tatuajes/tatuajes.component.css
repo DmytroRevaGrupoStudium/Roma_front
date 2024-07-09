@@ -18,7 +18,7 @@
 }
 
 .product-image img {
-    height: 300px;
+    height: 400px;
     width: 300px;
     padding-bottom: 5%;
   }
@@ -32,4 +32,18 @@
 {
   background-color: black;
   color:white;
+}
+
+.border
+{
+  border-radius: 10px 10px 10px 10px;
+}
+
+.txt_tattoo
+{
+  width: 100%;
+  text-align: center;
+  background-color: black;
+  color: white;
+  padding:1%;
 }

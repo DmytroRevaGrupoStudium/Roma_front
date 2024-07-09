@@ -16,3 +16,9 @@ a {
   display: block;
   width: 100%;
 }
+
+.container-fluid
+{
+ background-color: white;
+ color:black
+}

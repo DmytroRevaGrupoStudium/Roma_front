@@ -60,3 +60,8 @@
   background-color: black;
   color:white;
 }
+
+.border
+{
+  border-radius: 10px 10px 10px 10px;
+}

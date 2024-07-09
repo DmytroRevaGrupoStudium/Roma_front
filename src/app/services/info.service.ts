@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class InfoService {
 
-  private apiUrl = 'http://localhost:8080/api/'; // Cambia la URL a tu endpoint real
+  private apiUrl = '/api/';
   private dirInfo = 'informacion'
 
   constructor(private http: HttpClient) {}

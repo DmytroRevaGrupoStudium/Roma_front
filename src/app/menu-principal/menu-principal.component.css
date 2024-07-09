@@ -18,14 +18,6 @@ h2 {
     font-weight: bold;
 }
 
-.container {
-    background-color: #f9f9f9;
-    padding: 50px 0;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
 /* Ajuste de espaciado entre bloques */
 .carousel {
     margin-top: 50px;
@@ -49,14 +41,6 @@ h2 {
     height: 400px;
 }
 
-/* Estilo para las tarjetas de productos y tatuajes */
-.card {
-    background-color: #fff; /* Fondo blanco */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    transition: box-shadow 0.3s ease; /* Transición suave de sombra */
-    display: flex;
-}
-
 .card:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
 }
@@ -69,13 +53,35 @@ h2 {
     object-fit: contain; /* Ajusta la imagen para contenerse dentro del contenedor */
 }
 
-.card-body {
-    width: 50%; /* Ancho fijo para el cuerpo de la tarjeta */
-    padding: 1rem; /* Añade un poco de espacio interior */
+.btn-ver-mas {
+    margin-top: auto; /* Mover el botón hacia abajo */
+    display: block; /* Mostrar el botón como bloque para centrarlo */
+    margin-left: auto; /* Centrar el botón horizontalmente */
+    margin-right: auto;
 }
 
-.btn-ver-mas {
-    margin-top: 1rem; /* Margen superior para separar el botón */
+.container {
+    background-color: #f9f9f9;
+    padding: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para las tarjetas de productos y tatuajes */
+.card {
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: box-shadow 0.3s ease; /* Transición suave de sombra */
+    display: flex;
+    flex-direction: column; /* Cambiar a columna en dispositivos móviles */
+    height: 100%; /* Asegura que la tarjeta ocupe toda la altura disponible */
+}
+
+.card-body {
+    flex: 1; /* Ocupar todo el espacio vertical disponible */
+    padding: 1rem; /* Añade un poco de espacio interior */
+    text-align: center; /* Centrar texto en dispositivos móviles */
 }
 
 .dark-background {
@@ -87,6 +93,8 @@ h2 {
 .backgorund-text
 {
     background-color: #000000;
-    width: 45%;
     color: white;
+    text-align: center; /* Centrar texto en dispositivos móviles */
+    margin-right: 5%;
+    margin-left: 5%
 }
