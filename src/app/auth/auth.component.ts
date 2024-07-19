@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router'; // Importa Router correctamente
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-auth',
@@ -50,7 +51,14 @@ export class AuthComponent {
     this.authService.register(this.registerData).subscribe({
       next: (response: any) => {
         console.log('Registro exitoso', response);
-        this.router.navigateByUrl('/menu_principal'); // Redirige a la página de autenticación después del registro
+        this.switchToLogin();
+
+        Swal.fire({
+          title: "¡Su cuenta ha sido creada exitosamente!",
+          text: "Inicie sesión para acceder a su cuenta",
+          icon: "success"
+        });
+        
       },
       error: (error: any) => {
         // Manejar error en el registro
