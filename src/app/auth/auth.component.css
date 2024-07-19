@@ -1,5 +1,30 @@
   .logo {
-    width: 60px;
+    max-width: 60px; /* Ajusta el tamaño del logo según sea necesario */
     height: auto;
-    background-color: white;
   }
+  
+  /* Estilos para el card */
+  .card {
+    border-radius: 1rem;
+  }
+  
+  /* Margen en la parte superior de los formularios */
+  .mb-3 {
+    margin-bottom: 1rem;
+  }
+  
+  /* Ajuste de la anchura de los botones */
+  .btn {
+    width: 100%;
+  }
+  
+  /* Ajuste de la posición de los botones de cambio de vista */
+  .auth-switch {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .auth-switch .btn {
+    flex: 1;
+  }  

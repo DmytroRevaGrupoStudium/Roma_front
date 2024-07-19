@@ -1,46 +1,69 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">
-      <img src="logo.png" alt="Logo" class="logo">
-    </a>
-</nav>
+<div class="container">
+  <div class="row justify-content-center align-items-center min-vh-100">
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow">
+        <div class="card-body">
+          
+          <div class="text-center">
+          <a class="navbar-brand" href="#">
+            <img src="logo.png" alt="Logo" class="logo">
+          </a>
+          </div>
 
-<div class="auth-container">
-    <h2>{{ formMode === 'login' ? 'Login' : 'Registro' }}</h2>
+          <h2 class="text-center">{{ formMode === 'login' ? 'Login' : 'Registro' }}</h2>
   
-    <!-- Formulario de Login -->
-    <form *ngIf="formMode === 'login'" (ngSubmit)="onSubmitLogin()">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" [(ngModel)]="loginData.email" required>
+          <!-- Formulario de Login -->
+          <form *ngIf="formMode === 'login'" (ngSubmit)="onSubmitLogin()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" name="email" [(ngModel)]="loginData.email" required>
+            </div>
   
-      <label for="password">Contraseña</label>
-      <input type="password" id="password" name="password" [(ngModel)]="loginData.password" required>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" id="password" class="form-control" name="password" [(ngModel)]="loginData.password" required>
+            </div>
   
-      <button type="submit">Iniciar sesión</button>
-    </form>
+            <button type="submit" class="btn btn-outline-dark w-100">Iniciar sesión</button>
+          </form>
   
-    <!-- Formulario de Registro -->
-    <form *ngIf="formMode === 'register'" (ngSubmit)="onSubmitRegister()">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" [(ngModel)]="registerData.email" required>
+          <!-- Formulario de Registro -->
+          <form *ngIf="formMode === 'register'" (ngSubmit)="onSubmitRegister()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" name="email" [(ngModel)]="registerData.email" required>
+            </div>
   
-      <label for="password">Contraseña</label>
-      <input type="password" id="password" name="password" [(ngModel)]="registerData.password" required>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" id="password" class="form-control" name="password" [(ngModel)]="registerData.password" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" id="nombre" class="form-control" name="nombre" [(ngModel)]="registerData.nombre" required>
+            </div>
   
-      <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" name="nombre" [(ngModel)]="registerData.nombre" required>
+            <div class="mb-3">
+              <label for="apellidos" class="form-label">Apellidos</label>
+              <input type="text" id="apellidos" class="form-control" name="apellidos" [(ngModel)]="registerData.apellidos" required>
+            </div>
   
-      <label for="apellidos">Apellidos</label>
-      <input type="text" id="apellidos" name="apellidos" [(ngModel)]="registerData.apellidos" required>
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="tel" id="telefono" class="form-control" name="telefono" [(ngModel)]="registerData.telefono" required>
+            </div>
   
-      <label for="telefono">Teléfono</label>
-      <input type="tel" id="telefono" name="telefono" [(ngModel)]="registerData.telefono" required>
+            <button type="submit" class="btn btn-outline-dark w-100">Registrarse</button>
+          </form>
   
-      <button type="submit">Registrarse</button>
-    </form>
-  
-    <!-- Botones para cambiar entre Login y Registro -->
-    <div class="auth-switch">
-      <button (click)="switchToLogin()" [class.active]="formMode === 'login'">Login</button>
-      <button (click)="switchToRegister()" [class.active]="formMode === 'register'">Registro</button>
+          <!-- Botones para cambiar entre Login y Registro -->
+          <div class="auth-switch text-center mt-4">
+            <button (click)="switchToLogin()" class="btn btn-outline-dark" [class.active]="formMode === 'login'">Login</button>
+            <button (click)="switchToRegister()" class="btn btn-outline-dark" [class.active]="formMode === 'register'">Registro</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
