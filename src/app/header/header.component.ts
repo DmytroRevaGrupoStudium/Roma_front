@@ -3,6 +3,7 @@ import { InfoService } from '../services/info.service';
 import { AuthService } from '../services/auth.service';
 import { UserTiendaService } from '../services/user-tienda.service';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -79,9 +80,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    this.authService.updateAuthStatus(false);
-    this.isAuthenticated = false;
-    this.userName = '';
+    
+    Swal.fire({
+      title: "¿Estas seguro de cerrar sesión?",
+      text: "",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí",
+      cancelButtonText: "No"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('token');
+        this.authService.updateAuthStatus(false);
+        this.isAuthenticated = false;
+        this.userName = '';
+      }
+    });
   }
 }
