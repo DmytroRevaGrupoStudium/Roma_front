@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   informacion: any = {};
   isAuthenticated = false;
   userName: string = '';
+  isAdmin: boolean = false;
   private authSubscription: Subscription | undefined;
 
   constructor(
@@ -54,11 +55,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.isAuthenticated = isAuthenticated;
         if (this.isAuthenticated) {
           this.updateUserName();
+          this.updateRoleUser();
         } else {
           this.userName = '';
         }
       },
       error: (error) => console.error('Error during token validation', error)
+    });
+  }
+  updateRoleUser() 
+  {
+    this.authService.isAdmin().subscribe({
+      next: (role) => this.isAdmin = role,
+      error: (error) => console.error('Error fetching user name', error)
     });
   }
 
