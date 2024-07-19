@@ -19,6 +19,8 @@ import { NuevoTipoProductoComponent } from './nuevo-tipo-producto/nuevo-tipo-pro
 import { AuthComponent } from './auth/auth.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { ProductosAdminComponent } from './productos-admin/productos-admin.component';
+import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     NuevoTipoProductoComponent,
     AuthComponent,
     MainLayoutComponent,
+    ProductosAdminComponent,
+    TatuajesAdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,5 +56,4 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  nombreEmpresa: String = "Roma Tattoo's"
  }

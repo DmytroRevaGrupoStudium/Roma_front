@@ -11,6 +11,8 @@ import { NuevoTipoProductoComponent } from './nuevo-tipo-producto/nuevo-tipo-pro
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/role.guard';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { ProductosAdminComponent } from './productos-admin/productos-admin.component';
+import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.component';
 
 const routes: Routes = [
   { path: 'auth', component: AuthComponent },
@@ -27,7 +29,9 @@ const routes: Routes = [
       { path: 'tatuajes', component: TatuajesComponent },
       { path: 'nuevo_producto', component: NuevoProductoComponent, canActivate: [AuthGuard] },
       { path: 'nuevo_tatuaje', component: NuevoTatuajeComponent, canActivate: [AuthGuard] },
-      { path: 'nuevo_tipo_producto', component: NuevoTipoProductoComponent, canActivate: [AuthGuard] }
+      { path: 'nuevo_tipo_producto', component: NuevoTipoProductoComponent, canActivate: [AuthGuard] },
+      { path: 'productos_admin', component: ProductosAdminComponent, canActivate: [AuthGuard] },
+      { path: 'tatuajes_admin', component: TatuajesAdminComponent, canActivate: [AuthGuard] },
     ]
   }
 ];
