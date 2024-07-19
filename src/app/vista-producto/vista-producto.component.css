@@ -12,6 +12,7 @@ img
 {
   width: 400px;
   height: 400px;
+  
 }
 
 .col-3 img
@@ -22,5 +23,6 @@ img
 
 .row
 {
-  margin:5px
+  margin:5px;
+  background-color: white;
 }
