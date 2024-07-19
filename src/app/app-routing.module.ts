@@ -10,19 +10,26 @@ import { NuevoTatuajeComponent } from './nuevo-tatuaje/nuevo-tatuaje.component';
 import { NuevoTipoProductoComponent } from './nuevo-tipo-producto/nuevo-tipo-producto.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/role.guard';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/menu_principal', pathMatch: 'full' },
-  { path: 'menu_principal', component: MenuPrincipalComponent },
-  { path: 'vista_producto/:id', component: VistaProductoComponent },
-  { path: 'menu_ropa', component: MenuRopaComponent },
-  { path: 'menu_ropa/:tipoProducto', component: MenuRopaComponent },
-  { path: 'contacto', component: ContactoComponent },
-  { path: 'tatuajes', component: TatuajesComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'nuevo_producto', component: NuevoProductoComponent, canActivate: [AuthGuard] },
-  { path: 'nuevo_tatuaje', component: NuevoTatuajeComponent, canActivate: [AuthGuard]  },
-  { path: 'nuevo_tipo_producto', component: NuevoTipoProductoComponent, canActivate: [AuthGuard]  },
+  {
+    path: '',
+    component: MainLayoutComponent, // Utilizar MainLayoutComponent como contenedor principal
+    children: [
+      { path: '', redirectTo: '/menu_principal', pathMatch: 'full' },
+      { path: 'menu_principal', component: MenuPrincipalComponent },
+      { path: 'vista_producto/:id', component: VistaProductoComponent },
+      { path: 'menu_ropa', component: MenuRopaComponent },
+      { path: 'menu_ropa/:tipoProducto', component: MenuRopaComponent },
+      { path: 'contacto', component: ContactoComponent },
+      { path: 'tatuajes', component: TatuajesComponent },
+      { path: 'nuevo_producto', component: NuevoProductoComponent, canActivate: [AuthGuard] },
+      { path: 'nuevo_tatuaje', component: NuevoTatuajeComponent, canActivate: [AuthGuard] },
+      { path: 'nuevo_tipo_producto', component: NuevoTipoProductoComponent, canActivate: [AuthGuard] }
+    ]
+  }
 ];
 
 @NgModule({

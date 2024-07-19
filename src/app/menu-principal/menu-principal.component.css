@@ -82,6 +82,7 @@ h2 {
     flex: 1; /* Ocupar todo el espacio vertical disponible */
     padding: 1rem; /* Añade un poco de espacio interior */
     text-align: center; /* Centrar texto en dispositivos móviles */
+    border-radius: 10px 10px 10px 10px;
 }
 
 .dark-background {

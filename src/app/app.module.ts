@@ -18,6 +18,7 @@ import { NuevoTatuajeComponent } from './nuevo-tatuaje/nuevo-tatuaje.component';
 import { NuevoTipoProductoComponent } from './nuevo-tipo-producto/nuevo-tipo-producto.component';
 import { AuthComponent } from './auth/auth.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     NuevoTatuajeComponent,
     NuevoTipoProductoComponent,
     AuthComponent,
+    MainLayoutComponent,
   ],
   imports: [
     BrowserModule,
