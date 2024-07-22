@@ -25,8 +25,12 @@
             </div>
   
             <button type="submit" class="btn btn-outline-secondary w-100">Iniciar sesión</button>
+            
+            <div class="auth-switch text-center mt-2">
+              <p>¿Has olvidado la contraseña?<br><a href="#">Recuperar contraseña</a></p>
+            </div>
 
-            <div class="my-3">
+            <div class="my-1">
               <hr class="hr-text" data-content="O">
             </div>
 
@@ -37,7 +41,6 @@
             <div class="auth-switch text-center mt-1">
               <button type="button" (click)="switchToRegister()" class="btn btn-outline-dark">Registrarse</button>
             </div>
-
           </form>
   
           <!-- Formulario de Registro -->
@@ -74,13 +77,12 @@
             </div>
 
             <div class="auth-switch text-center">
-              <p>Si ya tienes cuenta, acceda a su cuenta.</p>
+              <p>Si ya tienes cuenta, inicie sesión.</p>
             </div>
 
             <div class="auth-switch text-center mt-1">
               <button type="button" (click)="switchToLogin()" class="btn btn-outline-dark">Iniciar sesión</button>
             </div>
-
           </form>          
         </div>
       </div>
