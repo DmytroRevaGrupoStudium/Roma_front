@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { UserTiendaService } from '../services/user-tienda.service';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router'; // Importa Router correctamente
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private infoService: InfoService,
     private authService: AuthService,
-    private userTiendaService: UserTiendaService
+    private userTiendaService: UserTiendaService,
+    private router: Router
   ) {
     this.infoService.getInformacion().subscribe(datos => {
       datos.forEach(item => {
@@ -96,6 +98,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.authService.updateAuthStatus(false);
         this.isAuthenticated = false;
         this.userName = '';
+        this.router.navigateByUrl('/auth');
       }
     });
   }

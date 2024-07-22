@@ -25,6 +25,19 @@
             </div>
   
             <button type="submit" class="btn btn-outline-secondary w-100">Iniciar sesión</button>
+
+            <div class="my-3">
+              <hr class="hr-text" data-content="O">
+            </div>
+
+            <div class="auth-switch text-center">
+              <p>¿No tienes cuenta? ¡Creala!</p>
+            </div>
+
+            <div class="auth-switch text-center mt-1">
+              <button type="button" (click)="switchToRegister()" class="btn btn-outline-dark">Registrarse</button>
+            </div>
+
           </form>
   
           <!-- Formulario de Registro -->
@@ -55,13 +68,20 @@
             </div>
   
             <button type="submit" class="btn btn-outline-secondary w-100">Registrarse</button>
-          </form>
-  
-          <!-- Botones para cambiar entre Login y Registro -->
-          <div class="auth-switch text-center mt-4">
-            <button (click)="switchToLogin()" class="btn btn-outline-dark" [class.active]="formMode === 'login'">Login</button>
-            <button (click)="switchToRegister()" class="btn btn-outline-dark" [class.active]="formMode === 'register'">Registro</button>
-          </div>
+            
+            <div class="my-3">
+              <hr class="hr-text" data-content="O">
+            </div>
+
+            <div class="auth-switch text-center">
+              <p>Si ya tienes cuenta, acceda a su cuenta.</p>
+            </div>
+
+            <div class="auth-switch text-center mt-1">
+              <button type="button" (click)="switchToLogin()" class="btn btn-outline-dark">Iniciar sesión</button>
+            </div>
+
+          </form>          
         </div>
       </div>
     </div>
