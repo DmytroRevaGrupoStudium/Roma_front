@@ -13,9 +13,11 @@ import { AuthGuard } from './auth/role.guard';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { ProductosAdminComponent } from './productos-admin/productos-admin.component';
 import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.component';
+import { ActivateComponent } from './activate/activate.component';
 
 const routes: Routes = [
   { path: 'auth', component: AuthComponent },
+  { path: 'activate', component: ActivateComponent },
   {
     path: '',
     component: MainLayoutComponent, // Utilizar MainLayoutComponent como contenedor principal

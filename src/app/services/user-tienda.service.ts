@@ -1,6 +1,6 @@
 // src/app/services/user.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -27,4 +27,9 @@ export class UserTiendaService {
       map(user => user.nombre)
     );
   }
+
+  activateUser(email: string): Observable<any> {
+    const params = new HttpParams().set('email', email);
+    return this.http.get<any>(`${this.apiUrl}/activate`, { params });
+  }  
 }

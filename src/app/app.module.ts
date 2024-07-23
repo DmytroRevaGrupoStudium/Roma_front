@@ -21,6 +21,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { ProductosAdminComponent } from './productos-admin/productos-admin.component';
 import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.component';
+import { ActivateComponent } from './activate/activate.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.componen
     MainLayoutComponent,
     ProductosAdminComponent,
     TatuajesAdminComponent,
+    ActivateComponent,
   ],
   imports: [
     BrowserModule,

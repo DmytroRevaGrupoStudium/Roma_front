@@ -40,9 +40,17 @@ export class AuthComponent {
         localStorage.setItem('token', response.token);
         this.router.navigateByUrl('/menu_principal'); // Redirige a la ruta principal o a donde necesites
         this.authService.updateAuthStatus(true);
+
+        this.clearData();
       },
       error: (error: any) => {
-        console.error('Error en el login:', error);
+        Swal.fire({
+          icon: "error",
+          title: "Se ha producido un error al iniciar sesión",
+          text: error.error.message,
+        });
+
+        this.clearData();
       }
     });
   }
@@ -50,20 +58,41 @@ export class AuthComponent {
   onSubmitRegister() {
     this.authService.register(this.registerData).subscribe({
       next: (response: any) => {
-        console.log('Registro exitoso', response);
-        this.switchToLogin();
+         this.switchToLogin();
 
         Swal.fire({
           title: "¡Su cuenta ha sido creada exitosamente!",
-          text: "Inicie sesión para acceder a su cuenta",
+          text: "Confirme su cuenta a través de mensaje en su email y luego inicie sesión para acceder a su cuenta",
           icon: "success"
         });
         
+        this.clearData();
       },
       error: (error: any) => {
-        // Manejar error en el registro
-        console.error('Error en el registro', error);
+        Swal.fire({
+          icon: "error",
+          title: "Se ha producido un error al registrarse",
+          text: error.error.message,
+        });
+
+        this.clearData();
       }
     });
+  }
+
+  // Limpiar datos de los formularios
+  clearData() {
+    this.loginData = {
+      email: '',
+      password: ''
+    };
+
+    this.registerData = {
+      email: '',
+      password: '',
+      nombre: '',
+      apellidos: '',
+      telefono: ''
+    };
   }
 }
