@@ -22,6 +22,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { ProductosAdminComponent } from './productos-admin/productos-admin.component';
 import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.component';
 import { ActivateComponent } from './activate/activate.component';
+import { NuevaClaveComponent } from './nueva-clave/nueva-clave.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ActivateComponent } from './activate/activate.component';
     ProductosAdminComponent,
     TatuajesAdminComponent,
     ActivateComponent,
+    NuevaClaveComponent,
   ],
   imports: [
     BrowserModule,

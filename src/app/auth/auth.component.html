@@ -32,7 +32,7 @@
             <button type="submit" class="btn btn-outline-secondary w-100" [disabled]="loginForm.invalid">Iniciar sesión</button>
 
             <div class="auth-switch text-center mt-2">
-              <p>¿Has olvidado la contraseña?<br><a href="#">Recuperar contraseña</a></p>
+              <p>¿Has olvidado la contraseña?<br><span class="link-like" (click)="restablecerPassword()">Recuperar contraseña</span></p>
             </div>
 
             <div class="my-1">
@@ -84,9 +84,9 @@
 
             <div class="mb-3">
               <label for="telefono" class="form-label">Teléfono</label>
-              <input type="tel" id="telefono" class="form-control" formControlName="telefono">
+              <input type="number" id="telefono" class="form-control" formControlName="telefono">
               <div *ngIf="registerForm.get('telefono')!.invalid && registerForm.get('telefono')!.touched" class="text-danger">
-                El teléfono es requerido.
+                El teléfono es requerido y debe ser válido.
               </div>
             </div>
 

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { UserTiendaService } from '../services/user-tienda.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -11,12 +12,13 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors }
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent {
+
   formMode: 'login' | 'register' = 'login';
 
   loginForm: FormGroup;
   registerForm: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) {
+  constructor(private authService: AuthService, private userTiendaService: UserTiendaService, private router: Router, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -24,7 +26,7 @@ export class AuthComponent {
 
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, this.passwordValidator]],
+      password: ['', [Validators.required, authService.passwordValidator]],
       nombre: ['', Validators.required],
       apellidos: ['', Validators.required],
       telefono: ['', Validators.required]
@@ -67,7 +69,7 @@ export class AuthComponent {
           this.switchToLogin();
           Swal.fire({
             title: "¡Su cuenta ha sido creada exitosamente!",
-            text: "Confirme su cuenta a través de mensaje en su email y luego inicie sesión para acceder a su cuenta",
+            text: "Se le ha enviado un correo a "+this.registerForm.value.email+", confirme su cuenta.",
             icon: "success"
           });
           this.clearData();
@@ -89,21 +91,54 @@ export class AuthComponent {
     this.registerForm.reset();
   }
 
-  passwordValidator(control: AbstractControl): ValidationErrors | null {
-    const value = control.value;
-
-    if (!value) {
-      return null;
-    }
-
-    const hasMinLength = value.length >= 6;
-    const hasUpperCase = /[A-Z]/.test(value);
-    const hasLowerCase = /[a-z]/.test(value);
-    const hasNumeric = /[0-9]/.test(value);
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
-
-    const passwordValid = hasMinLength && hasUpperCase && hasLowerCase && hasNumeric && hasSpecialChar;
-
-    return !passwordValid ? { passwordStrength: 'La contraseña debe tener al menos 6 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.' } : null;
+  restablecerPassword() {
+    Swal.fire({
+      title: 'Escriba su correo electrónico',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Recuperar contraseña',
+      cancelButtonText: 'Volver',
+      showLoaderOnConfirm: true,
+      preConfirm: async (email: string) => {
+        // Crear un FormControl para validar el correo electrónico
+        const emailControl = new FormControl(email, [Validators.required, Validators.email]);
+  
+        // Verificar si el correo electrónico es válido
+        if (emailControl.invalid) {
+          // Mostrar un mensaje de validación y evitar la confirmación
+          Swal.showValidationMessage('Por favor, introduzca un correo electrónico válido');
+          return false; // Asegúrate de que el modal no se confirme si el correo es inválido
+        }
+        // Si el correo electrónico es válido, devolverlo para su uso posterior
+        return email;
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Obtener el correo electrónico del resultado
+        const email = result.value;
+  
+        // Suscribirse al método del servicio que maneja la recuperación de contraseña
+        this.userTiendaService.enviarCorreoPassword(email).subscribe({
+          next: (response: any) => {
+            Swal.fire({
+              title: 'Correo electrónico enviado',
+              text: `Se le ha enviado un correo electrónico a ${email} para recuperar su contraseña.`,
+              icon: 'success'
+            });
+          },
+          error: (error: any) => {
+            Swal.fire({
+              icon: "error",
+              title: "Se ha producido un error",
+              text: error.message,
+            });
+          }
+        });
+      }
+    });
   }
 }

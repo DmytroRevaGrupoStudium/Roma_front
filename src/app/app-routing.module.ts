@@ -14,10 +14,12 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { ProductosAdminComponent } from './productos-admin/productos-admin.component';
 import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.component';
 import { ActivateComponent } from './activate/activate.component';
+import { NuevaClaveComponent } from './nueva-clave/nueva-clave.component';
 
 const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'activate', component: ActivateComponent },
+  { path: 'nueva_clave', component: NuevaClaveComponent },
   {
     path: '',
     component: MainLayoutComponent, // Utilizar MainLayoutComponent como contenedor principal

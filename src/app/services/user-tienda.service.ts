@@ -10,6 +10,7 @@ import { InfoService } from './info.service';
   providedIn: 'root'
 })
 export class UserTiendaService {
+
   private apiUrl = 'user_tienda';
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private infoService: InfoService) { 
@@ -31,5 +32,10 @@ export class UserTiendaService {
   activateUser(email: string): Observable<any> {
     const params = new HttpParams().set('email', email);
     return this.http.get<any>(`${this.apiUrl}/activate`, { params });
-  }  
+  }
+
+  enviarCorreoPassword(email: any): Observable<any> {
+    const params = new HttpParams().set('email', email);
+    return this.http.get<any>(`${this.apiUrl}/email_reset_password`, { params });
+  }
 }

@@ -1,13 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { InfoService } from './info.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
   private apiUrl = 'auth';
   
   private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -56,5 +58,30 @@ export class AuthService {
 
   updateAuthStatus(isAuthenticated: boolean): void {
     this.isAuthenticatedSubject.next(isAuthenticated);
+  }
+
+  changePassword(email: any, newPass: any) {
+    const params = new HttpParams()
+    .set('email', email)
+    .set('password', newPass);
+    return this.http.get<any>(`${this.apiUrl}/reset_password`, { params });
+  }
+
+  passwordValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+
+  if (!value) {
+    return { passwordStrength: 'La contraseña es requerida.' };
+  }
+
+    const hasMinLength = value.length >= 6;
+    const hasUpperCase = /[A-Z]/.test(value);
+    const hasLowerCase = /[a-z]/.test(value);
+    const hasNumeric = /[0-9]/.test(value);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+
+    const passwordValid = hasMinLength && hasUpperCase && hasLowerCase && hasNumeric && hasSpecialChar;
+
+    return !passwordValid ? { passwordStrength: 'La contraseña debe tener al menos 6 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.' } : null;
   }
 }
