@@ -19,6 +19,8 @@ export class AuthComponent {
   registerForm: FormGroup;
 
   constructor(private authService: AuthService, private userTiendaService: UserTiendaService, private router: Router, private fb: FormBuilder) {
+    
+    // Validadores
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
