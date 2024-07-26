@@ -1,3 +1,4 @@
+/* Estilo para filtros */
 .filter-option {
     cursor: pointer;
     padding: 10px;
@@ -8,7 +9,8 @@
     border-radius: 30px 30px 30px 30px;
   }
 
-  .filter-option-todo {
+  /* Estilo de botón Restablecer */
+  .restablecer {
     cursor: pointer;
     padding: 10px;
     margin-bottom: 5px;
@@ -19,19 +21,23 @@
     border-radius: 10px 10px 10px 10px;
   }
   
+  /* Estilo de botones de filtros en hover */
   .filter-option:hover {
     background-color: #6e6e6e;
   }
 
-  .filter-option-todo:hover {
+  /* Estilo de botón Restablecer en hover */
+  .restablecer:hover {
     background-color: #b4b4b4;
   }
 
+  /* Estilo de botón seleccionado de filtros */
   .selected {
     background-color: #b4b4b4;
     color: black; /* Cambia el color del texto para que sea visible sobre el fondo azul */
   }
 
+  /* Estilo de botón seleccionado de filtros en hover*/
   .selected:hover {
     background-color: #969696; /* Cambia el color de fondo al hacer hover sobre un filtro seleccionado */
   }
@@ -43,6 +49,7 @@
   padding-bottom: 5%;
 }
 
+/* Estilo para quitar transparencia que sobra de las imagenes */
 .product-image
 {
   background-color: white;
@@ -58,12 +65,14 @@
   font-size: 18px; /* Tamaño de fuente más pequeño para los decimales */
 }
 
+/* Estilo para los card de los productos */
 .estilo-card-productos
 {
   background-color: black;
   color:white;
 }
 
+/* Estilo para establecer los bordes */
 .border
 {
   border-radius: 10px 10px 10px 10px;

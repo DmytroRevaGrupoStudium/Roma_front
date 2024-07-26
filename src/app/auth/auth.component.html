@@ -4,14 +4,16 @@
       <div class="card shadow">
         <div class="card-body">
           <div class="text-center">
+            <!-- Logo -->
             <a class="navbar-brand" href="#">
               <img src="logo.png" alt="Logo" class="logo">
             </a>
           </div>
 
-          <h2 class="text-center">{{ formMode === 'login' ? 'Login' : 'Registro' }}</h2>
+          <!-- Dependiendo de apartado seleccionado aparece el texto correspondiente -->
+          <h2 class="text-center">{{ formMode === 'login' ? 'Inicio de sesión' : 'Registro' }}</h2>
 
-          <!-- Formulario de Login -->
+          <!-- Formulario de Inicio de sesión con su control de formulario y control de errores con config de acción al enviar el formulario -->
           <form *ngIf="formMode === 'login'" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
@@ -30,15 +32,18 @@
             </div>
 
             <button type="submit" class="btn btn-outline-secondary w-100" [disabled]="loginForm.invalid">Iniciar sesión</button>
-
+            
+            <!-- Bloque de recuperación de contraseña -->
             <div class="auth-switch text-center mt-2">
               <p>¿Has olvidado la contraseña?<br><span class="link-like" (click)="restablecerPassword()">Recuperar contraseña</span></p>
             </div>
 
+            <!-- Separador -->
             <div class="my-1">
               <hr class="hr-text" data-content="O">
             </div>
 
+            <!-- Bloque de invitación a crear una cuenta -->
             <div class="auth-switch text-center">
               <p>¿No tienes cuenta? ¡Creala!</p>
             </div>
@@ -48,7 +53,7 @@
             </div>
           </form>
 
-          <!-- Formulario de Registro -->
+          <!-- Formulario de Registro con su control de formulario y control de errores con config de acción al enviar el formulario -->
           <form *ngIf="formMode === 'register'" [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
@@ -91,11 +96,13 @@
             </div>
 
             <button type="submit" class="btn btn-outline-secondary w-100" [disabled]="registerForm.invalid">Registrarse</button>
-
+            
+            <!-- Separador -->
             <div class="my-3">
               <hr class="hr-text" data-content="O">
             </div>
 
+            <!-- Bloque de invitación a iniciar sesión -->
             <div class="auth-switch text-center">
               <p>Si ya tienes cuenta, inicie sesión.</p>
             </div>

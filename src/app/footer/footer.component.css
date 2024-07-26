@@ -1,3 +1,4 @@
+ /* Definir estilo general de footer */
 .footer
 {
     background-color: #000000;
@@ -5,27 +6,32 @@
     color:white;
 }
 
+ /* Definir estilo de imagen de logo */
 .footer-logo {
     width: 60px;
     height: auto;
     margin: 10px
 }
 
+ /* Definir estilo de texto */
 .footer-text {
     font-size: 12px;
 }
 
+ /* Definir estilo general de enlaces */
 .footer-links {
     text-align: center;
     font-size: 16px;
 }
 
+ /* Definir estilo de texto de enlaces */
 .footer-link {
     color: #ffffff;
     text-decoration: none;
     margin: 0 10px;
 }
 
+ /* Definir estilo de texto de enlaces en hover*/
 .footer-link:hover {
     color: rgb(185, 185, 185);
 }

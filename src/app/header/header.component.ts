@@ -1,3 +1,4 @@
+// Importaciones de módulos y servicios necesarios
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { InfoService } from '../services/info.service';
 import { AuthService } from '../services/auth.service';
@@ -12,13 +13,15 @@ import { Router } from '@angular/router'; // Importa Router correctamente
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
+  
+  // Variables de clase
   informacion: any = {};
   isAuthenticated = false;
   userName: string = '';
   isAdmin: boolean = false;
   private authSubscription: Subscription | undefined;
 
+  // Constructor para inicializar servicios y obtener información
   constructor(
     private infoService: InfoService,
     private authService: AuthService,
@@ -32,6 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Método que se ejecuta al iniciar el componente
   ngOnInit(): void {
     this.checkAuthentication();
     this.authSubscription = this.authService.authChanged.subscribe({
@@ -46,12 +50,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Método que se ejecuta al destruir el componente
   ngOnDestroy(): void {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
   }
 
+  // Verifica la autenticación del usuario
   checkAuthentication(): void {
     this.authService.tokenValidation().subscribe({
       next: (isAuthenticated) => {
@@ -66,6 +72,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       error: (error) => console.error('Error during token validation', error)
     });
   }
+
+  // Actualiza el rol del usuario
   updateRoleUser() 
   {
     this.authService.isAdmin().subscribe({
@@ -74,6 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Actualiza el nombre de usuario
   updateUserName(): void {
     this.userTiendaService.getUserName().subscribe({
       next: (name) => this.userName = name,
@@ -81,8 +90,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Método para cerrar sesión
   logout(): void {
-    
+    // Muestra un mensaje de confirmación antes de cerrar sesión
     Swal.fire({
       title: "¿Estas seguro de cerrar sesión?",
       text: "",
@@ -94,6 +104,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       cancelButtonText: "No"
     }).then((result) => {
       if (result.isConfirmed) {
+        // Elimina el token del almacenamiento local, actualiza el estado de autenticación y redirige a la página de inicio de sesión
         localStorage.removeItem('token');
         this.authService.updateAuthStatus(false);
         this.isAuthenticated = false;

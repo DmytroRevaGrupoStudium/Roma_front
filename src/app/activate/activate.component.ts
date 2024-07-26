@@ -21,7 +21,15 @@ export class ActivateComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       const email = params['email'];
 
+      // En caso de llamada al método con email vacío devolvemos al user a menú principal
+      if (typeof email === 'undefined') {
+        this.router.navigate(['/menu_principal']);
+        return;
+      }
+
+      // Accedemos a método de activación de usuario por su email
       this.userService.activateUser(email).subscribe({
+        // Manejamos respuestas
         next: (response: any) => {
           // Mostrar un mensaje de éxito con SweetAlert2
           Swal.fire({
@@ -37,12 +45,9 @@ export class ActivateComponent implements OnInit {
           });
         },
         error: (error) => {
-          // Revisar la estructura del error recibido
-          console.error('Error recibido:', error); // Para depuración
-
-          // Extraer el mensaje de error adecuado
+          // Revisar la estructura del error recibido y extraer el mensaje
           const errorMessage = error?.error?.message || 'No se pudo activar la cuenta. Por favor, inténtalo de nuevo más tarde.';
-          
+
           // Mostrar un mensaje de error con SweetAlert2
           Swal.fire({
             title: 'Error',
@@ -50,20 +55,10 @@ export class ActivateComponent implements OnInit {
             icon: 'error',
             confirmButtonText: 'Aceptar'
           }).then(() => {
-            // Redirigir al usuario a una página de error o inicio
+            // Redirigir al usuario a una página de inicio
             this.router.navigate(['/menu_principal']);
           });
         }
-      });
-      // Manejo de error si el email no está presente
-      Swal.fire({
-        title: 'Error',
-        text: 'No se proporcionó un email en los parámetros de la URL.',
-        icon: 'error',
-        confirmButtonText: 'Aceptar'
-      }).then(() => {
-        // Redirigir a una página de inicio o error
-        this.router.navigate(['/']);
       });
     });
   }

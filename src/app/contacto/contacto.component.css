@@ -1,3 +1,4 @@
+/* Quito subrayado a los enlaces */
 a {
     text-decoration: none;
   }
@@ -7,16 +8,12 @@ a {
   margin-bottom: 0.5rem;
 }
 
+/* Añado margenes */
 .contact-info i {
   margin-right: 0.5rem;
 }
 
-
-.btn {
-  display: block;
-  width: 100%;
-}
-
+/* Estilo de contenedor */
 .container-fluid
 {
  background-color: white;

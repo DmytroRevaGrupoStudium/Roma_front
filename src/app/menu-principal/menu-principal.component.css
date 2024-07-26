@@ -5,6 +5,7 @@
     margin: 1%
 }
 
+/* Estilo para los controles de carrusel */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     width: 25px; /* Tamaño de los íconos de control */
@@ -13,6 +14,7 @@
     border-radius: 50%;
 }
 
+/* Estilo para los h2 */
 h2 {
     color: #333;
     font-weight: bold;
@@ -21,13 +23,15 @@ h2 {
 /* Ajuste de espaciado entre bloques */
 .carousel {
     margin-top: 50px;
-    margin-bottom: 50px; /* Espacio entre los carruseles */
+    margin-bottom: 50px;
 }
 
+/* Establecer margenes entre las filas de contenido */
 .row {
-    margin-bottom: 30px; /* Espacio entre las filas de contenido */
+    margin-bottom: 30px;
 }
 
+/* Estilo para el logo */
 .logo
 {
     width: 120px;
@@ -35,16 +39,19 @@ h2 {
     padding-bottom: 20px;
 }
 
+/* Estilo para las imagenes de los card */
 .card img
 {
     width: 400px;
     height: 400px;
 }
 
+/* Estilo para los card en hover */
 .card:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
 }
 
+/* Estilo para las imagenes de carrousel */
 .card-img-top {
     max-width: 100%; /* Ancho máximo del contenedor */
     max-height: 100%; /* Altura máxima del contenedor */
@@ -53,6 +60,7 @@ h2 {
     object-fit: contain; /* Ajusta la imagen para contenerse dentro del contenedor */
 }
 
+/* Estilo de botón de "Ver más" */
 .btn-ver-mas {
     margin-top: auto; /* Mover el botón hacia abajo */
     display: block; /* Mostrar el botón como bloque para centrarlo */
@@ -60,6 +68,7 @@ h2 {
     margin-right: auto;
 }
 
+/* Estilo geeneral de contenedor */
 .container {
     background-color: #f9f9f9;
     padding: 50px;
@@ -78,6 +87,7 @@ h2 {
     height: 100%; /* Asegura que la tarjeta ocupe toda la altura disponible */
 }
 
+/* Estilo para el contenido de cada card */
 .card-body {
     flex: 1; /* Ocupar todo el espacio vertical disponible */
     padding: 1rem; /* Añade un poco de espacio interior */
@@ -85,13 +95,15 @@ h2 {
     border-radius: 10px 10px 10px 10px;
 }
 
-.dark-background {
+/* Estilo para título de cada carrousel */
+.background-title-carrousel {
     background-color: #f7f7f7;
     padding: 20px; /* Espaciado interno para mayor legibilidad */
     border-radius: 10px; /* Borde redondeado */
 }
 
-.backgorund-text
+/* Estilo para texto de cada objeto de carrousel */
+.carrousel-text
 {
     background-color: #000000;
     color: white;

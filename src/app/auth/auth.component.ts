@@ -13,14 +13,16 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, 
 })
 export class AuthComponent {
 
+  // Config para hacer switch de formularios
   formMode: 'login' | 'register' = 'login';
 
+  // Variables para el control de formularios
   loginForm: FormGroup;
   registerForm: FormGroup;
 
   constructor(private authService: AuthService, private userTiendaService: UserTiendaService, private router: Router, private fb: FormBuilder) {
     
-    // Validadores
+    // Validadores de formularios
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -35,6 +37,7 @@ export class AuthComponent {
     });
   }
 
+  // Métodos para cambiar la vista de formularios
   switchToLogin() {
     this.formMode = 'login';
   }
@@ -43,10 +46,14 @@ export class AuthComponent {
     this.formMode = 'register';
   }
 
+  // Métodos para enviar los formularios de Inicio de sesión y Registro con sus llamadas a los métodos correspondientes
   onSubmitLogin() {
+    // Comprobar si formulario es valido
     if (this.loginForm.valid) {
+      // Llamamos al método que inicia el procedimiento de Inicio de sesión
       this.authService.login(this.loginForm.value).subscribe({
         next: (response: any) => {
+          // Del response sacamos datos del usuario y dirigimos al user al menú principal con token guardado en localStorage y modificamos estado de user autenticado.
           localStorage.setItem('token', response.token);
           this.router.navigateByUrl('/menu_principal');
           this.authService.updateAuthStatus(true);
@@ -65,7 +72,9 @@ export class AuthComponent {
   }
 
   onSubmitRegister() {
+    // Comprobar si formulario es valido
     if (this.registerForm.valid) {
+      // Llamamos al método que inicia el procedimiento de Registro
       this.authService.register(this.registerForm.value).subscribe({
         next: (response: any) => {
           this.switchToLogin();
@@ -88,12 +97,15 @@ export class AuthComponent {
     }
   }
 
+  // Método para limpiar los formularios
   clearData() {
     this.loginForm.reset();
     this.registerForm.reset();
   }
 
+  // Método para iniciar procedimiento de recuperación de contraseña
   restablecerPassword() {
+    // Abrimos formulario para consultar el email de user a recuperar la contraseña
     Swal.fire({
       title: 'Escriba su correo electrónico',
       input: 'text',
@@ -123,7 +135,7 @@ export class AuthComponent {
         // Obtener el correo electrónico del resultado
         const email = result.value;
   
-        // Suscribirse al método del servicio que maneja la recuperación de contraseña
+        // Suscribirse al método del servicio que maneja el inicio de procedimiento de recuperación de contraseña
         this.userTiendaService.enviarCorreoPassword(email).subscribe({
           next: (response: any) => {
             Swal.fire({

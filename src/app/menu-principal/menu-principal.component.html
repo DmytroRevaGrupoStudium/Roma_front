@@ -1,7 +1,7 @@
 <!-- Carrusel de tatuajes -->
 <div id="carouselTatuajes" class="carousel slide mt-5" data-ride="carousel" data-interval="5000">
     <div class="carousel-inner p-4">
-        <div class="carrousel-title text-center dark-background fs-5">
+        <div class="carrousel-title text-center background-title-carrousel fs-5">
             <p><strong>Diseños destacados:</strong></p>
         </div>
         <div *ngFor="let tatuaje of tatuajes; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
@@ -11,7 +11,7 @@
                         <img class="card-img-top mx-auto d-block" [src]="tatuaje.imagenes[0]" [alt]="tatuaje.nombreTatuaje">
                     </div>
                     <div class="col-md-6">
-                        <div class="backgorund-text card-body text-center text-md-left">
+                        <div class="carrousel-text card-body text-center text-md-left">
                             <h5 class="card-title">{{ tatuaje.nombreTatuaje }}</h5>
                             <p class="card-text">
                                 {{ tatuaje.descripcion }}
@@ -34,7 +34,7 @@
 <!-- Carrusel de productos -->
 <div id="carouselProductos" class="carousel slide mt-5" data-ride="carousel" data-interval="5000">
     <div class="carousel-inner p-4">
-        <div class="carrousel-title text-center dark-background fs-5">
+        <div class="carrousel-title text-center background-title-carrousel fs-5">
             <p><strong>Ropa destacada:</strong></p>
         </div>
         <div *ngFor="let product of products; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
@@ -44,7 +44,7 @@
                         <img class="card-img-top mx-auto d-block" [src]="product.imagenes[0]" [alt]="product.nombreProducto">
                     </div>
                     <div class="col-md-6">
-                        <div class="backgorund-text card-body text-center text-md-left">
+                        <div class="carrousel-text card-body text-center text-md-left">
                             <h5 class="card-title">Explora {{product.tipoProducto}} de {{informacion.nombreEmpresa}}</h5>
                             <p class="card-text">{{ product.nombreProducto }}</p>
                             <p class="card-text">{{ product.descripcionLarga }}</p>

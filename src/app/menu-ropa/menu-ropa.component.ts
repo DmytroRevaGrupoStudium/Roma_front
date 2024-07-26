@@ -65,12 +65,8 @@ export class MenuRopaComponent implements OnInit {
     this.filteredProducts = this.products;
   }
 
+  // Dirigimos al user a otra pantalla con producto pasado por parámetro
   verMas(product: Producto): void {
-    if (product && product.id) {
-      console.log(product.id);
       this.router.navigate(['/vista_producto', product.id]);
-    } else {
-      console.error('El objeto de producto es nulo o indefinido, o no tiene un ID válido.');
-    }
   }
 }

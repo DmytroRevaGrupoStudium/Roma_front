@@ -35,6 +35,7 @@ export class MenuPrincipalComponent {
       this.filterProductosCarrousel();
     });
 
+    // Consultar información general, productos y tatuajes
     this.tipoProductoService.getTiposProducts().subscribe(tiposProductos => {
       this.tiposProductos = tiposProductos;
     });
@@ -50,6 +51,7 @@ export class MenuPrincipalComponent {
     });
   }
 
+  // Método de filtración de productos
   filterProductosCarrousel(): void {
     const imagenesCarrouselProductos: any[] = [];
     const tipoProductosVistos = new Set<string>();
