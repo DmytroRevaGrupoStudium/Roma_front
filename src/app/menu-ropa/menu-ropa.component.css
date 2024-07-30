@@ -46,6 +46,7 @@
 .product-image img {
   height: 300px;
   width: 100%;
+  min-width: 80%;
 }
 
 /* Estilo para quitar transparencia que sobra de las imagenes */
