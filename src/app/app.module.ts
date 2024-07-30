@@ -23,6 +23,7 @@ import { ProductosAdminComponent } from './productos-admin/productos-admin.compo
 import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.component';
 import { ActivateComponent } from './activate/activate.component';
 import { NuevaClaveComponent } from './nueva-clave/nueva-clave.component';
+import { VistaTatuajeComponent } from './vista-tatuaje/vista-tatuaje.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NuevaClaveComponent } from './nueva-clave/nueva-clave.component';
     TatuajesAdminComponent,
     ActivateComponent,
     NuevaClaveComponent,
+    VistaTatuajeComponent,
   ],
   imports: [
     BrowserModule,

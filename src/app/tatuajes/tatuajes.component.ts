@@ -27,7 +27,6 @@ export class TatuajesComponent {
   // Método para configurar el desvío de usuario a componente de vista_tatuaje
   verMas(tatuaje: Tatuaje): void {
     if (tatuaje && tatuaje.id) {
-      console.log(tatuaje.id);
       this.router.navigate(['/vista_tatuaje', tatuaje.id]);
     } else {
       console.error('El objeto de producto es nulo o indefinido, o no tiene un ID válido.');

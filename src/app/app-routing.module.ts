@@ -15,6 +15,7 @@ import { ProductosAdminComponent } from './productos-admin/productos-admin.compo
 import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.component';
 import { ActivateComponent } from './activate/activate.component';
 import { NuevaClaveComponent } from './nueva-clave/nueva-clave.component';
+import { VistaTatuajeComponent } from './vista-tatuaje/vista-tatuaje.component';
 
 const routes: Routes = [
   // Componentes sin header y footer
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: '', redirectTo: '/menu_principal', pathMatch: 'full' },
       { path: 'menu_principal', component: MenuPrincipalComponent },
       { path: 'vista_producto/:id', component: VistaProductoComponent },
+      { path: 'vista_tatuaje/:id', component: VistaTatuajeComponent },
       { path: 'menu_ropa', component: MenuRopaComponent },
       { path: 'menu_ropa/:tipoProducto', component: MenuRopaComponent },
       { path: 'contacto', component: ContactoComponent },
