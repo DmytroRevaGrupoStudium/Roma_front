@@ -56,6 +56,16 @@ export class AuthService {
     }
   }
 
+  getEmail(token: string): string
+  {
+    const tokenPayload = this.jwtHelper.decodeToken(token);
+
+    if (tokenPayload.exp * 1000 < Date.now()) {
+      return '';
+    }
+    return tokenPayload.sub;
+  }
+
   updateAuthStatus(isAuthenticated: boolean): void {
     this.isAuthenticatedSubject.next(isAuthenticated);
   }
@@ -83,5 +93,18 @@ export class AuthService {
     const passwordValid = hasMinLength && hasUpperCase && hasLowerCase && hasNumeric && hasSpecialChar;
 
     return !passwordValid ? { passwordStrength: 'La contraseña debe tener al menos 6 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.' } : null;
+  }
+
+  enviarCorreoPassword(email: any): Observable<any> {
+    const params = new HttpParams().set('email', email);
+    return this.http.get<any>(`${this.apiUrl}/email_reset_password`, { params });
+  }
+
+  reenviarActivacionUser (token:string): Observable<any>
+  {
+    const tokenPayload = this.jwtHelper.decodeToken(token);
+
+    const params = new HttpParams().set('email', tokenPayload.sub);
+    return this.http.get<any>(`${this.apiUrl}/email_activar_cuenta`, { params });
   }
 }

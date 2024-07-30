@@ -33,9 +33,4 @@ export class UserTiendaService {
     const params = new HttpParams().set('email', email);
     return this.http.get<any>(`${this.apiUrl}/activate`, { params });
   }
-
-  enviarCorreoPassword(email: any): Observable<any> {
-    const params = new HttpParams().set('email', email);
-    return this.http.get<any>(`${this.apiUrl}/email_reset_password`, { params });
-  }
 }

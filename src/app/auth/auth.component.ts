@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { UserTiendaService } from '../services/user-tienda.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -136,7 +136,7 @@ export class AuthComponent {
         const email = result.value;
   
         // Suscribirse al método del servicio que maneja el inicio de procedimiento de recuperación de contraseña
-        this.userTiendaService.enviarCorreoPassword(email).subscribe({
+        this.authService.enviarCorreoPassword(email).subscribe({
           next: (response: any) => {
             Swal.fire({
               title: 'Correo electrónico enviado',
@@ -148,7 +148,7 @@ export class AuthComponent {
             Swal.fire({
               icon: "error",
               title: "Se ha producido un error",
-              text: error.message,
+              text: error.error.message,
             });
           }
         });

@@ -22,8 +22,31 @@ export class NuevaClaveComponent implements OnInit {
   }
 
   private restablecerClave() {
+    // Obtener el parámetro 'token' de los parámetros de consulta (queryParams)
     this.route.queryParams.subscribe(params => {
-      const email = params['email'];
+      const token = params['token'];
+
+      if (!token) {
+        // Redirigir al usuario si no se proporciona un token
+        this.router.navigate(['/menu_principal']);
+        return;
+      }
+      
+      // Decodificar el token para obtener la información y capturamos email
+      const email = this.authService.getEmail(token)
+
+      // Verificar si el token ha expirado
+      if (!email)
+      {    // Token caducado, notificar al usuario
+          Swal.fire({
+            title: 'Error',
+            text: 'La solicitud ha caducado. Solicite su recuperación de contraseña nuevamente.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+          this.router.navigate(['/auth']);
+          return;     
+      }
 
       Swal.fire({
         title: 'Ingresa tu nueva contraseña',
