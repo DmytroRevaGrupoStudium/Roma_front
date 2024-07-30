@@ -9,3 +9,16 @@ body {
   background-repeat: repeat;
   background-size: 10%;
 }
+
+  /* Estilo para botón de recuperación de contraseña que simula un enlace */
+  .volver {
+    padding: 1%;
+    color: #000000; /* Color típico de enlace */
+    cursor: pointer; /* Cambia el cursor a la mano */
+    background-color: white;
+  }
+  
+  /* Hover de botón de recuperación de contraseña */
+  .volver:hover {
+    color: #525252; /* Color más oscuro al pasar el ratón */
+  }
