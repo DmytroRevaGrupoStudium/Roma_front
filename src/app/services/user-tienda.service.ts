@@ -24,7 +24,8 @@ export class UserTiendaService {
     }
 
     const email = this.jwtHelper.decodeToken(token).sub;
-    return this.http.get<any>(`${this.apiUrl}/${email}`).pipe(
+    const params = new HttpParams().set('email', email);
+    return this.http.get<any>(`${this.apiUrl}/get_user`, {params}).pipe(
       map(user => user.nombre)
     );
   }

@@ -20,15 +20,19 @@ export class VistaProductoComponent implements OnInit {
   
   ngOnInit(): void {
 
+    // Sacamos el id de los parametros
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
+      // Consultamos toda la info sobre el producto
       this.productoService.getProductById(productId).subscribe(product => {
         this.product = product;
+        // Seleccionamos la primera imagen por defecto
         this.selectImage(this.product.imagenes[0]);
       });
     }
   }  
 
+  // Método para seleccionar la imagen principal
   selectImage(image: string): void {
     this.selectedImage = image;
   }

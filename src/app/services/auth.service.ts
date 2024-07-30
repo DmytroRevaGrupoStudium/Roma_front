@@ -12,9 +12,12 @@ export class AuthService {
 
   private apiUrl = 'auth';
   
+  // BehaviorSubject para mantener el estado de autenticación
   private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  // Variable observable para controlar estado de autenticación
   public authChanged: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
 
+  // Constructor que inicializa la URL de la API y realiza la validación del token al iniciar
   constructor(private http: HttpClient, private infoService: InfoService, private jwtHelper: JwtHelperService) {
     this.apiUrl = this.infoService.getAuthUrl() + this.apiUrl;
 
@@ -25,14 +28,17 @@ export class AuthService {
     });
   }
 
+  // Método para realizar el login de un usuario
   login(loginData: { email: string, password: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, loginData);
   }
 
+  // Método para registrar un nuevo usuario
   register(registerData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/register`, registerData);
   }
 
+  // Método para validar el token de autenticación
   tokenValidation(): Observable<boolean> {
     const token = localStorage.getItem('token');
 
@@ -41,6 +47,7 @@ export class AuthService {
     return of(isAuthenticated);
   }
   
+  // Método para verificar si un usuario es administrador
   isAdmin(): Observable<boolean> {
     const token = localStorage.getItem('token');
 
@@ -56,6 +63,7 @@ export class AuthService {
     }
   }
 
+  // Método para obtener el email del token decodificado
   getEmail(token: string): string
   {
     const tokenPayload = this.jwtHelper.decodeToken(token);
@@ -66,10 +74,12 @@ export class AuthService {
     return tokenPayload.sub;
   }
 
+  // Método para actualizar el estado de autenticación
   updateAuthStatus(isAuthenticated: boolean): void {
     this.isAuthenticatedSubject.next(isAuthenticated);
   }
 
+  // Método para cambiar la contraseña de un usuario
   changePassword(email: any, newPass: any) {
     const params = new HttpParams()
     .set('email', email)
@@ -77,29 +87,34 @@ export class AuthService {
     return this.http.get<any>(`${this.apiUrl}/reset_password`, { params });
   }
 
+  // Método validador personalizado para la fortaleza de la contraseña
   passwordValidator(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
 
-  if (!value) {
-    return { passwordStrength: 'La contraseña es requerida.' };
-  }
+    if (!value) {
+      return { passwordStrength: 'La contraseña es requerida.' };
+    }
 
+    // Validadores de la fortaleza de la contraseña
     const hasMinLength = value.length >= 6;
     const hasUpperCase = /[A-Z]/.test(value);
     const hasLowerCase = /[a-z]/.test(value);
     const hasNumeric = /[0-9]/.test(value);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
 
+    // Validación
     const passwordValid = hasMinLength && hasUpperCase && hasLowerCase && hasNumeric && hasSpecialChar;
 
     return !passwordValid ? { passwordStrength: 'La contraseña debe tener al menos 6 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.' } : null;
   }
 
+  // Método para enviar un correo para restablecer la contraseña
   enviarCorreoPassword(email: any): Observable<any> {
     const params = new HttpParams().set('email', email);
     return this.http.get<any>(`${this.apiUrl}/email_reset_password`, { params });
   }
 
+  // Método para reenviar la activación de la cuenta de usuario
   reenviarActivacionUser (token:string): Observable<any>
   {
     const tokenPayload = this.jwtHelper.decodeToken(token);

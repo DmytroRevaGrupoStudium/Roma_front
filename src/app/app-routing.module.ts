@@ -17,6 +17,7 @@ import { ActivateComponent } from './activate/activate.component';
 import { NuevaClaveComponent } from './nueva-clave/nueva-clave.component';
 
 const routes: Routes = [
+  // Componentes sin header y footer
   { path: 'auth', component: AuthComponent },
   { path: 'activate', component: ActivateComponent },
   { path: 'nueva_clave', component: NuevaClaveComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent, // Utilizar MainLayoutComponent como contenedor principal
     children: [
+      // Componentes con header y footer
       { path: '', redirectTo: '/menu_principal', pathMatch: 'full' },
       { path: 'menu_principal', component: MenuPrincipalComponent },
       { path: 'vista_producto/:id', component: VistaProductoComponent },

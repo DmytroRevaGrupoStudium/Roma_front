@@ -3,6 +3,7 @@ import { ProductoService } from '../services/producto.service';
 import { TipoProductoService } from '../services/tipo-producto.service';
 import { TipoProducto } from '../models/tipo-producto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevo-producto',
@@ -39,14 +40,14 @@ export class NuevoProductoComponent {
     });
   }
 
-  ngAfterViewInit() {}
-
+  // Apertura de ventana de selección de archivos
   openFilePicker(index: number) {
     const fileInputElement = this.fileInput.nativeElement;
     fileInputElement.setAttribute('data-index', index.toString());
     fileInputElement.click();
   }
 
+  // Lectura y colocación de imagenes
   handleFileChange(event: Event) {
     const fileInput = event.target as HTMLInputElement;
     const files = fileInput.files;
@@ -68,6 +69,7 @@ export class NuevoProductoComponent {
     }
   }
 
+  // Método para guardar producto
   guardarProducto() {
     if (this.formularioProducto.invalid) {
       // Si el formulario no es válido, muestra un mensaje de error o resalta los campos incorrectos
@@ -88,16 +90,24 @@ export class NuevoProductoComponent {
     // Llama al servicio para guardar el producto
     this.productoService.guardarProducto(productoDatos).subscribe({
       next: response => {
-        console.log('Producto guardado:', response);
+        Swal.fire({
+          title: 'Éxito',
+          text: `Producto guardado correctamente.`,
+          icon: 'success'
+        });
         window.location.reload();
       },
       error: error => {
-        console.error('Error al guardar el producto:', error);
-        // Manejo de errores: mostrar un mensaje al usuario, por ejemplo
+        Swal.fire({
+          icon: "error",
+          title: "Se ha producido un error al guardar el producto.",
+          text: error.error.message,
+        });
       }
     });
   }
 
+  // Método que comprueba que hay imagenes guardadas en variables de imagenes para la validación
   hayImagenes(): boolean {
     // Verifica si la imagen principal no está vacía
     const imagenPrincipalNoVacia = this.imagenPrincipal.trim() !== '';

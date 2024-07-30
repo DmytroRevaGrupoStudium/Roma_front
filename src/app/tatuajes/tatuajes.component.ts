@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TatuajeService } from '../services/tatuaje.service';
-import { InfoService } from '../services/info.service';
 import { Tatuaje } from '../models/tatuaje';
 import { Router } from '@angular/router';
 
@@ -11,19 +10,12 @@ import { Router } from '@angular/router';
 })
 export class TatuajesComponent {
   tatuajes!: any[];
-  informacion: any = {};
+
 
   constructor(
     private tatuajeService: TatuajeService,
-    private infoService: InfoService,
     private router: Router,
-  ) {
-    this.infoService.getInformacion().subscribe(datos => {
-      datos.forEach(item => {
-        this.informacion[item.dato] = item.valor;
-      });
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     // Obtener los productos del servicio al inicializar el componente
@@ -32,6 +24,7 @@ export class TatuajesComponent {
     });
   }
 
+  // Método para configurar el desvío de usuario a componente de vista_tatuaje
   verMas(tatuaje: Tatuaje): void {
     if (tatuaje && tatuaje.id) {
       console.log(tatuaje.id);

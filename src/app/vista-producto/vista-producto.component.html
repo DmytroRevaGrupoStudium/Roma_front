@@ -5,8 +5,8 @@
 
     <img [src]="selectedImage" class="img-fluid" alt="{{ product.nombreProducto }}">
 
-      <div class="row"> <!-- Agregar la clase additional-images-container -->
-        <div class="col-3" *ngFor="let imagen of product.imagenes; let i = index"> <!-- Mover la directiva ngFor a este div -->
+      <div class="row">
+        <div class="col-3" *ngFor="let imagen of product.imagenes; let i = index">
           <!-- Iterar sobre las imágenes del producto -->
           <img 
             [src]="imagen" 

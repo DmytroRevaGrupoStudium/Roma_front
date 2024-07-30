@@ -7,16 +7,15 @@ import { InfoService } from './info.service';
   providedIn: 'root'
 })
 export class TatuajeService {
-  private apiUrl = 'tatuajes'; // Cambia la URL a tu endpoint real
+  private apiUrl = 'tatuajes';
 
   constructor(private http: HttpClient, private infoService: InfoService) {
     this.apiUrl = this.infoService.getAuthUrl()+this.apiUrl;
   }
 
   guardarTatuaje(tatuaje: any): Observable<any> {
-
-  // Obtener el token de localStorage (o de donde lo tengas almacenado)
-  const token = localStorage.getItem('token'); // Asumiendo que el token está en localStorage
+  // Obtener el token de localStorage
+  const token = localStorage.getItem('token');
 
   // Crear los encabezados HTTP con el token
   const headers = new HttpHeaders({
@@ -29,10 +28,11 @@ export class TatuajeService {
   }
 
   getTatuajes(): Observable<any[]> {
-    // Realizar la solicitud HTTP para obtener los productos desde la API
+    // Realizar la solicitud HTTP para obtener los tatuajes desde la API
     return this.http.get<any[]>(this.apiUrl);
   }
 
+  // Realizar la solicitud HTTP para obtener los tatuajes desde la API por ID
   getTatuajeById(tatuajeID: string): Observable<any>
   {
     return this.http.get<any>(this.apiUrl+'/'+tatuajeID);

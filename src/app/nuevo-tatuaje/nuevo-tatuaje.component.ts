@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { TatuajeService } from '../services/tatuaje.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevo-tatuaje',
@@ -25,14 +26,14 @@ export class NuevoTatuajeComponent {
     });
   }
 
-  ngAfterViewInit() {}
-
+  // Apertura de ventana de selección de archivos
   openFilePicker(index: number) {
     const fileInputElement = this.fileInput.nativeElement;
     fileInputElement.setAttribute('data-index', index.toString());
     fileInputElement.click();
   }
 
+  // Lectura y colocación de imagenes
   handleFileChange(event: Event) {
     const fileInput = event.target as HTMLInputElement;
     const files = fileInput.files;
@@ -54,6 +55,7 @@ export class NuevoTatuajeComponent {
     }
   }
 
+  // Método para guardar producto
   guardarTatuaje() {
     if (this.formularioTatuaje.invalid) {
       // Si el formulario no es válido, muestra un mensaje de error o resalta los campos incorrectos
@@ -74,15 +76,24 @@ export class NuevoTatuajeComponent {
     // Llama al servicio para guardar el Tatuaje
     this.tatuajeService.guardarTatuaje(tatuajeDatos).subscribe({
         next: response => {
-            console.log('Tatuaje guardado:', response);
+          Swal.fire({
+            title: 'Éxito',
+            text: `Tatuaje guardado correctamente.`,
+            icon: 'success'
+          });
             window.location.reload();
         },
         error: error => {
-            console.error('Error al guardar el Tatuaje:', error);
+          Swal.fire({
+            icon: "error",
+            title: "Se ha producido un error al guardar el tatuaje.",
+            text: error.error.message,
+          });
         }
     });
 }
 
+// Método que comprueba que hay imagenes guardadas en variables de imagenes para la validación
 hayImagenes(): boolean {
   // Verifica si la imagen principal no está vacía
   const imagenPrincipalNoVacia = this.imagenPrincipal.trim() !== '';

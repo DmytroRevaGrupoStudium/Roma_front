@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class InfoService {
 
+  // Centralizando en una variable la URL de la API
   private apiUrl = '/api/';
   private dirInfo = 'informacion'
 

@@ -19,6 +19,7 @@ export class NuevoTipoProductoComponent {
     });
   }
 
+  // Método para guardar el tipo de producto
   guardarTipoProducto() {
     if (this.formularioTipoProducto.invalid) {
         // Si el formulario no es válido, muestra un mensaje de error o resalta los campos incorrectos

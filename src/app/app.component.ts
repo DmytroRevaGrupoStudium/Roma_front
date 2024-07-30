@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
     private titleService: Title,
   ) {}
 
+  // Al iniciar la app establecer título de página sacada de BD con uso de API llamando al método de consulta de información sobre la tienda
   ngOnInit(): void {
     this.infoService.getInformacion().subscribe(datos => {
       datos.forEach(item => {

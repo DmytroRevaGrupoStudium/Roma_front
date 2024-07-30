@@ -2,6 +2,7 @@
 @import "bootstrap-icons/font/bootstrap-icons.css";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+/* Estilo general de página */
 body {
   font-family: 'Montserrat', sans-serif;
   background-image: url('/background.png');

@@ -8,12 +8,13 @@ import { InfoService } from './info.service';
 })
 export class TipoProductoService {
 
-  private apiUrl = 'tipo_productos'; // Cambia la URL a tu endpoint real
+  private apiUrl = 'tipo_productos';
 
   constructor(private http: HttpClient, private infoService: InfoService) {
     this.apiUrl = this.infoService.getAuthUrl()+this.apiUrl;
   }
 
+  // Realizar la solicitud HTTP para guardar los productos desde la API
   guardarTipoProducto(tipoProducto: any): Observable<any> {
     return this.http.post(this.apiUrl, tipoProducto);
   }
