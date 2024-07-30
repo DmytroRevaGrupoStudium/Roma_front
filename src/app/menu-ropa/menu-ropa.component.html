@@ -12,8 +12,8 @@
     <!-- Contenido principal de productos -->
     <div class="col-md-10">
       <div class="row">
-        <div type="button" class="estilo-card-productos flex productos col-md-3 m-2 p-2" *ngFor="let product of filteredProducts" (click)="verMas(product)">
-          <div class="product-image d-flex justify-content-center align-items-center">
+        <div type="button" class="estilo-card-productos m-2 p-2" *ngFor="let product of filteredProducts" (click)="verMas(product)">
+          <div class="product-image justify-content-center align-items-center">
             <img [src]="product.imagenes[0]" [alt]="product.nombreProducto">
           </div>
           <div class="card-body d-flex flex-column m-2">

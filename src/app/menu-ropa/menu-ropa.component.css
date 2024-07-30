@@ -46,7 +46,6 @@
 .product-image img {
   height: 300px;
   width: 100%;
-  min-width: 80%;
 }
 
 /* Estilo para quitar transparencia que sobra de las imagenes */
@@ -74,6 +73,7 @@
   color:white;
   border-radius: 20px 20px 20px 20px;
   width: 32%;
+  flex: auto;
 }
 
 @media screen and (max-width: 768px) {
@@ -83,5 +83,6 @@
     color:white;
     border-radius: 20px 20px 20px 20px;
     width: 100%;
+    height: auto;
   }
 }
