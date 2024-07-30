@@ -3,7 +3,7 @@
     <!-- Columna de imágenes adicionales -->
     <div class="col-md-6">
 
-    <img [src]="selectedImage" class="img-fluid" alt="{{ product.nombreProducto }}">
+    <img [src]="selectedImage" class="img-fluid" (click)="abrirImg()" alt="{{ product.nombreProducto }}">
 
       <div class="row">
         <div class="col-3" *ngFor="let imagen of product.imagenes; let i = index">

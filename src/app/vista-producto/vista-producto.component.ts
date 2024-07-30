@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Producto } from '../models/producto';
 import { ProductoService } from '../services/producto.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-vista-producto',
@@ -35,5 +36,14 @@ export class VistaProductoComponent implements OnInit {
   // Método para seleccionar la imagen principal
   selectImage(image: string): void {
     this.selectedImage = image;
+  }
+
+  abrirImg() {
+    Swal.fire({
+      imageUrl: this.selectedImage,
+      imageAlt: 'Imagen seleccionada',
+      showCloseButton: true,
+      showConfirmButton: false
+    });
   }
 }
