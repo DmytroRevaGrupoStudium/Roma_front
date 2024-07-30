@@ -46,13 +46,14 @@
 .product-image img {
   height: 300px;
   width: 100%;
-  padding-bottom: 5%;
 }
 
 /* Estilo para quitar transparencia que sobra de las imagenes */
 .product-image
 {
   background-color: white;
+  border-radius: 20px 20px 20px 20px;
+  padding: 10%;
 }
 
 /* Estilo para los dígitos enteros del precio */
@@ -70,10 +71,16 @@
 {
   background-color: black;
   color:white;
+  border-radius: 20px 20px 20px 20px;
+  width: 32%;
 }
 
-/* Estilo para establecer los bordes */
-.border
-{
-  border-radius: 10px 10px 10px 10px;
+@media screen and (max-width: 768px) {
+  .estilo-card-productos
+  {
+    background-color: black;
+    color:white;
+    border-radius: 20px 20px 20px 20px;
+    width: 100%;
+  }
 }
