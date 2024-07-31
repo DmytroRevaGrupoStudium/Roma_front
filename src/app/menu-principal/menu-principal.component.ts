@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
-import { TipoProductoService } from '../services/tipo-producto.service';
 import { TatuajeService } from '../services/tatuaje.service';
 import { InfoService } from '../services/info.service';
 
@@ -13,13 +12,11 @@ declare var $: any;
 })
 export class MenuPrincipalComponent {
   products!: any[];
-  tiposProductos!: any[];
   tatuajes!: any[];
   informacion: any = {};
 
   constructor(
     private productoService: ProductoService,
-    private tipoProductoService: TipoProductoService,
     private tatuajeService: TatuajeService,
     private infoService: InfoService
   ) {}
@@ -33,13 +30,14 @@ export class MenuPrincipalComponent {
       this.filterProductosCarrousel();
     });
 
-    // Consultar información general, productos y tatuajes
-    this.tipoProductoService.getTiposProducts().subscribe(tiposProductos => {
-      this.tiposProductos = tiposProductos;
-    });
-
     this.tatuajeService.getTatuajes().subscribe(tatuajes => {
       this.tatuajes = tatuajes;
+    });
+
+    this.infoService.getInformacion().subscribe(datos => {
+      datos.forEach(item => {
+        this.informacion[item.dato] = item.valor;
+      });
     });
   }
 
