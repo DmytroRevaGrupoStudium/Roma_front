@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { InfoService } from './info.service';
 
@@ -16,7 +16,17 @@ export class TipoProductoService {
 
   // Realizar la solicitud HTTP para guardar los productos desde la API
   guardarTipoProducto(tipoProducto: any): Observable<any> {
-    return this.http.post(this.apiUrl, tipoProducto);
+
+  const token = localStorage.getItem('token');
+
+  // Crear los encabezados HTTP con el token
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  });
+
+    // Hacer la solicitud POST con los encabezados
+    return this.http.post(this.apiUrl, tipoProducto, { headers: headers});
   }
 
   getTiposProducts(): Observable<any[]> {

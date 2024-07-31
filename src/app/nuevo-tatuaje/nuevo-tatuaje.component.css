@@ -3,6 +3,18 @@ img
     background-color: white;
 }
 
+.img-principal
+{
+    width: 100%;
+    height: auto;
+}
+
+.img-secundaria
+{
+    width: 100%;
+    height: auto;
+}
+
 .form-group
 {
     background-color: white;

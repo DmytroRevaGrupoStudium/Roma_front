@@ -21,6 +21,17 @@ export class VistaProductoComponent implements OnInit {
   
   ngOnInit(): void {
 
+     // Animación de cargando para que user no se desespere
+     Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     // Sacamos el id de los parametros
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
@@ -36,6 +47,7 @@ export class VistaProductoComponent implements OnInit {
   // Método para seleccionar la imagen principal
   selectImage(image: string): void {
     this.selectedImage = image;
+    Swal.close();
   }
 
   abrirImg() {

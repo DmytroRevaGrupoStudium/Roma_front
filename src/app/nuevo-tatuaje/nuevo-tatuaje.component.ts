@@ -73,36 +73,59 @@ export class NuevoTatuajeComponent {
 
     tatuajeDatos.imagenes = imagenesParaGuardar;
 
+     // Animación de cargando para que user no se desespere
+     Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     // Llama al servicio para guardar el Tatuaje
     this.tatuajeService.guardarTatuaje(tatuajeDatos).subscribe({
         next: response => {
+          Swal.close();
+
           Swal.fire({
             title: 'Éxito',
             text: `Tatuaje guardado correctamente.`,
             icon: 'success'
           });
-            window.location.reload();
+            
+          this.clearData();
         },
         error: error => {
+          Swal.close();
+
           Swal.fire({
             icon: "error",
             title: "Se ha producido un error al guardar el tatuaje.",
             text: error.error.message,
           });
+
+          this.clearData();
         }
     });
 }
 
-// Método que comprueba que hay imagenes guardadas en variables de imagenes para la validación
-hayImagenes(): boolean {
-  // Verifica si la imagen principal no está vacía
-  const imagenPrincipalNoVacia = this.imagenPrincipal.trim() !== '';
+  private clearData() {
+    this.formularioTatuaje.reset();
+    this.imagenPrincipal = "";
+    this.imagenesAdicionales = [];
+  }
 
-  // Verifica si hay al menos una imagen adicional que no esté vacía
-  const algunaImagenAdicionalNoVacia = this.imagenesAdicionales.some(image => image.trim() !== '');
+  // Método que comprueba que hay imagenes guardadas en variables de imagenes para la validación
+  hayImagenes(): boolean {
+    // Verifica si la imagen principal no está vacía
+    const imagenPrincipalNoVacia = this.imagenPrincipal.trim() !== '';
 
-  // Devuelve true si la imagen principal no está vacía o si hay al menos una imagen adicional que no está vacía
-  return imagenPrincipalNoVacia || algunaImagenAdicionalNoVacia;
-}
+    // Verifica si hay al menos una imagen adicional que no esté vacía
+    const algunaImagenAdicionalNoVacia = this.imagenesAdicionales.some(image => image.trim() !== '');
 
+    // Devuelve true si la imagen principal no está vacía o si hay al menos una imagen adicional que no está vacía
+    return imagenPrincipalNoVacia || algunaImagenAdicionalNoVacia;
+  }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TipoProductoService } from '../services/tipo-producto.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevo-tipo-producto',
@@ -29,14 +30,40 @@ export class NuevoTipoProductoComponent {
     // Obtener los datos del formulario
     const tipoProductoDatos = this.formularioTipoProducto.value;
 
+    // Animación de cargando para que user no se desespere
+    Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     // Llama al servicio para guardar el Tatuaje
     this.tipoProductoService.guardarTipoProducto(tipoProductoDatos).subscribe({
         next: response => {
-            console.log('Tipo de producto guardado:', response);
-            window.location.reload();
+            Swal.close();
+
+            Swal.fire({
+              title: "¡Éxito!",
+              text: "Categoría "+tipoProductoDatos.tipoProducto+", se ha cerado correctamente.",
+              icon: "success"
+            });
+
+            this.formularioTipoProducto.reset();
         },
         error: error => {
-            console.error('Error al guardar el tipo d eproducto:', error);
+            Swal.close();
+
+            Swal.fire({
+              icon: "error",
+              title: "Se ha producido un error",
+              text: error.message,
+            });
+
+            this.formularioTipoProducto.reset();
         }
     });
 }

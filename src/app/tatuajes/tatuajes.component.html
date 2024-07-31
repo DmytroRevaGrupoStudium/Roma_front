@@ -4,7 +4,7 @@
 
   <!-- Contenido principal de tatuajes -->
   <div class="row">
-    <div class="col-md-4" *ngFor="let tatuaje of tatuajes">
+    <div class="col-md-4 mb-2" *ngFor="let tatuaje of tatuajes">
       <div type="button" class="estilo-card-tatuajes m-1 p-2" (click)="verMas(tatuaje)">
         <div class="product-image justify-content-center align-items-center">
           <img [src]="tatuaje.imagenes[0]" [alt]="tatuaje.nombreTatuaje">
