@@ -28,7 +28,8 @@
                     <input type="text" class="form-control" id="descripcion" formControlName="descripcion" required>
                 </div>                
                 <!-- Botón de guardar -->
-                <button type="submit" class="btn btn-dark" [disabled]="formularioTatuaje.invalid || !hayImagenes()">Guardar</button>
+                <button type="submit" class="btn btn-dark m-2" [disabled]="formularioTatuaje.invalid || !hayImagenes()">Guardar</button>
+                <button type="submit" class="btn btn-danger m-2" (click)="clearData()">Restablecer formulario</button>
             </form>
         </div>
     </div>

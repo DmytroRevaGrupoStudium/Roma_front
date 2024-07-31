@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
   styleUrl: './nuevo-tatuaje.component.css'
 })
 export class NuevoTatuajeComponent {
+
   formularioTatuaje!: FormGroup; // Definir el FormGroup
 
   imagenPrincipal: string = '';
@@ -26,8 +27,37 @@ export class NuevoTatuajeComponent {
     });
   }
 
-  // Apertura de ventana de selección de archivos
+  // Método de filtrado antes de abrir selector
   openFilePicker(index: number) {
+
+    // Filtrado de img principal
+    if (index === 0 )
+      {
+        if (this.imagenPrincipal)
+        {
+            this.accionImg(0);
+        }
+        else
+        {
+          this.pickImg(index);
+        }
+      }
+      // Filtrado de imgs secundarias
+      else
+      {
+        if (this.imagenesAdicionales[index-1])
+        {
+          this.accionImg(index);
+        }
+        else
+        {
+          this.pickImg(index);
+        }
+      }
+  }
+
+  // Apertura de ventana de selección de archivos
+  private pickImg(index: number) {
     const fileInputElement = this.fileInput.nativeElement;
     fileInputElement.setAttribute('data-index', index.toString());
     fileInputElement.click();
@@ -111,7 +141,7 @@ export class NuevoTatuajeComponent {
     });
 }
 
-  private clearData() {
+  clearData() {
     this.formularioTatuaje.reset();
     this.imagenPrincipal = "";
     this.imagenesAdicionales = [];
@@ -128,4 +158,28 @@ export class NuevoTatuajeComponent {
     // Devuelve true si la imagen principal no está vacía o si hay al menos una imagen adicional que no está vacía
     return imagenPrincipalNoVacia || algunaImagenAdicionalNoVacia;
   }
+
+  accionImg(index: number) {
+    Swal.fire({
+      title: "¿Que necesita hacer?",
+      text: "Seleccione la acción:",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Cambiar la imagen",
+      cancelButtonText: "Eliminar la imagen",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.pickImg(index);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        if (index === 0) {
+          this.imagenPrincipal = "";
+        } else {
+          this.imagenesAdicionales[index-1] = "";
+        } 
+      }
+    });
+  }
+  
 }
