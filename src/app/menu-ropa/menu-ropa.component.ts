@@ -3,6 +3,7 @@ import { ProductoService } from '../services/producto.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Producto } from '../models/producto';
 import { BehaviorSubject } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu-ropa',
@@ -21,6 +22,17 @@ export class MenuRopaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     // Obtener los productos del servicio al inicializar el componente
     this.productoService.getProducts().subscribe(products => {
       this.products = products;
@@ -56,6 +68,8 @@ export class MenuRopaComponent implements OnInit {
 
   getUniqueTypes(): string[] {
     // Obtener tipos únicos de productos
+
+    Swal.close();
     return [...new Set(this.products.map(product => product.tipoProducto))];
   }
 

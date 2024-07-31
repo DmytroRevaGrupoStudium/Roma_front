@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
 import { TatuajeService } from '../services/tatuaje.service';
 import { InfoService } from '../services/info.service';
-
-declare var $: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu-principal',
@@ -22,14 +21,18 @@ export class MenuPrincipalComponent {
   ) {}
 
   ngOnInit(): void {
-    // Obtener los productos del servicio al inicializar el componente
-    this.productoService.getProducts().subscribe(products => {
-      this.products = products;
-
-      // Filtrar productos para el carrusel de productos
-      this.filterProductosCarrousel();
+    // Animación de cargando para que user no se desespere
+    Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
     });
 
+    // Obtener los datos de los servicios al inicializar el componente
     this.tatuajeService.getTatuajes().subscribe(tatuajes => {
       this.tatuajes = tatuajes;
     });
@@ -38,6 +41,13 @@ export class MenuPrincipalComponent {
       datos.forEach(item => {
         this.informacion[item.dato] = item.valor;
       });
+    });
+
+    this.productoService.getProducts().subscribe(products => {
+      this.products = products;
+
+      // Filtrar productos para el carrusel de productos
+      this.filterProductosCarrousel();
     });
   }
 
@@ -55,5 +65,6 @@ export class MenuPrincipalComponent {
     });
 
     this.products = imagenesCarrouselProductos;
+    Swal.close();
   }
 }
