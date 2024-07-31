@@ -30,7 +30,7 @@ export class NuevoProductoComponent {
       nombreProducto: ['', [Validators.required, Validators.maxLength(20)]],
       descripcionCorta: ['', [Validators.maxLength(50)]],
       descripcionLarga: ['', [Validators.maxLength(100)]],
-      precio: [0, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]], // Validar números con máximo 2 decimales
+      precio: [[Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]], // Validar números con máximo 2 decimales
       tipoProducto: ['', [Validators.required, Validators.pattern(/^(?!Seleccione...).+$/)]], // Validar que no sea "Seleccione..."
     });
 
@@ -153,6 +153,8 @@ export class NuevoProductoComponent {
     this.formularioProducto.reset();
     this.imagenPrincipal = "";
     this.imagenesAdicionales = [];
+
+    this.formularioProducto.get('tipoProducto')?.setValue("");
   }
 
   accionImg(index: number) {
