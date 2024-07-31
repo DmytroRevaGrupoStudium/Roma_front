@@ -21,4 +21,5 @@ body {
   /* Hover de botón de recuperación de contraseña */
   .volver:hover {
     color: #525252; /* Color más oscuro al pasar el ratón */
+    text-decoration: underline;
   }
