@@ -19,6 +19,18 @@ export class ActivateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    // Animación de carga
+    Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     // Obtener el parámetro 'token' de los parámetros de consulta (queryParams)
     this.route.queryParams.subscribe(params => {
       const token = params['token'];
@@ -33,6 +45,9 @@ export class ActivateComponent implements OnInit {
       const email = this.authService.getEmail(token)
 
       if (!email) {
+
+        Swal.close();
+
         // Token caducado, notificar al usuario
         Swal.fire({
             title: 'Error',
@@ -71,6 +86,8 @@ export class ActivateComponent implements OnInit {
       this.userService.activateUser(email).subscribe({
         // Manejamos respuestas
         next: (response: any) => {
+          Swal.close();
+
           // Mostrar un mensaje de éxito con SweetAlert2
           Swal.fire({
             title: '¡Éxito!',
@@ -85,6 +102,8 @@ export class ActivateComponent implements OnInit {
           });
         },
         error: (error) => {
+          Swal.close();
+          
           // Revisar la estructura del error recibido y extraer el mensaje
           const errorMessage = error?.error?.message || 'No se pudo activar la cuenta. Por favor, inténtalo de nuevo más tarde.';
 

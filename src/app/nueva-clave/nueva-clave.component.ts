@@ -39,7 +39,8 @@ export class NuevaClaveComponent implements OnInit {
 
       // Verificar si el token ha expirado
       if (!email)
-      {    // Notificar al usuario si el token ha caducado
+      {       
+        // Notificar al usuario si el token ha caducado
           Swal.fire({
             title: 'Error',
             text: 'La solicitud ha caducado. Solicite su recuperación de contraseña nuevamente.',
@@ -83,9 +84,22 @@ export class NuevaClaveComponent implements OnInit {
         if (result.isConfirmed) {
           const newPass = result.value;
           
+          // Animación de carga
+          Swal.fire({
+            title: "Cargando...",
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            timerProgressBar: false,
+            didOpen: () => {
+              Swal.showLoading();
+            }
+          });
+
           // Cambiar la contraseña llamando al servicio
           this.authService.changePassword(email, newPass).subscribe({
             next: (response: any) => {
+              Swal.close();
+
               // Mostrar mensaje de éxito
               Swal.fire({
                 title: '¡Éxito!',
@@ -99,7 +113,7 @@ export class NuevaClaveComponent implements OnInit {
               });
             },
             error: (error) => {
-              console.error('Error recibido:', error);
+              Swal.close();
 
               const errorMessage = error?.error?.message || 'No se pudo restablecer la contraseña. Inténtalo de nuevo más tarde.';
 
@@ -117,6 +131,7 @@ export class NuevaClaveComponent implements OnInit {
         }
         else
         {
+          Swal.close();
           this.router.navigate(['/auth']);
         }
       });

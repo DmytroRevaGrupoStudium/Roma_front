@@ -26,16 +26,18 @@ export class ContactoComponent {
     });
 
     // Suscribimos al response de servicio
-    this.infoService.getInformacion().subscribe(datos => {
-      datos.forEach(item => {
-        this.informacion[item.dato] = item.valor;
-      }); // Correct placement of closing bracket
-    }, 
-    (error: any) => {
-      console.error('Error al obtener los datos:', error);
-    }, 
-    () => {
-      Swal.close();
+    this.infoService.getInformacion().subscribe({
+      next: (datos) => {
+        datos.forEach(item => {
+          this.informacion[item.dato] = item.valor;
+        });
+      },
+      error: (error) => {
+        console.error('Error al obtener los datos:', error);
+      },
+      complete: () => {
+        Swal.close();
+      }
     });
   }
 }

@@ -48,6 +48,17 @@ export class AuthComponent {
 
   // Métodos para enviar los formularios de Inicio de sesión y Registro con sus llamadas a los métodos correspondientes
   onSubmitLogin() {
+    // Animación de carga
+    Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     // Comprobar si formulario es valido
     if (this.loginForm.valid) {
       // Llamamos al método que inicia el procedimiento de Inicio de sesión
@@ -58,6 +69,9 @@ export class AuthComponent {
           this.router.navigateByUrl('/menu_principal');
           this.authService.updateAuthStatus(true);
           this.clearData();
+
+          // Cerramos la carga
+          Swal.close();
         },
         error: (error: any) => {
           Swal.fire({
@@ -66,18 +80,35 @@ export class AuthComponent {
             text: error.error.message,
           });
           this.clearData();
+
+          // Cerramos la animación
+          Swal.close();
         }
       });
     }
   }
 
   onSubmitRegister() {
+
+    // Animación de carga
+    Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     // Comprobar si formulario es valido
     if (this.registerForm.valid) {
       // Llamamos al método que inicia el procedimiento de Registro
       this.authService.register(this.registerForm.value).subscribe({
         next: (response: any) => {
           this.switchToLogin();
+          Swal.close();
+          
           Swal.fire({
             title: "¡Su cuenta ha sido creada exitosamente!",
             text: "Se le ha enviado un correo a "+this.registerForm.value.email+", confirme su cuenta.",
@@ -92,6 +123,9 @@ export class AuthComponent {
             text: error.error.message,
           });
           this.clearData();
+
+          // Cerramos la animación
+          Swal.close();
         }
       });
     }
@@ -132,12 +166,25 @@ export class AuthComponent {
       allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
       if (result.isConfirmed) {
+        // Animación de carga
+        Swal.fire({
+          title: "Cargando...",
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+          timerProgressBar: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+        
         // Obtener el correo electrónico del resultado
         const email = result.value;
-  
+        
         // Suscribirse al método del servicio que maneja el inicio de procedimiento de recuperación de contraseña
         this.authService.enviarCorreoPassword(email).subscribe({
           next: (response: any) => {
+            Swal.close();
+
             Swal.fire({
               title: 'Correo electrónico enviado',
               text: `Se le ha enviado un correo electrónico a ${email} para recuperar su contraseña.`,
