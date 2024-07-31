@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
-import { Router } from '@angular/router';
 import { TipoProductoService } from '../services/tipo-producto.service';
 import { TatuajeService } from '../services/tatuaje.service';
 import { InfoService } from '../services/info.service';
@@ -20,7 +19,6 @@ export class MenuPrincipalComponent {
 
   constructor(
     private productoService: ProductoService,
-    private router: Router,
     private tipoProductoService: TipoProductoService,
     private tatuajeService: TatuajeService,
     private infoService: InfoService
@@ -42,12 +40,6 @@ export class MenuPrincipalComponent {
 
     this.tatuajeService.getTatuajes().subscribe(tatuajes => {
       this.tatuajes = tatuajes;
-    });
-
-    this.infoService.getInformacion().subscribe(datos => {
-      datos.forEach(item => {
-        this.informacion[item.dato] = item.valor;
-      });
     });
   }
 
