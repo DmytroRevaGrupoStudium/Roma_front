@@ -12,10 +12,10 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/role.guard';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { ProductosAdminComponent } from './productos-admin/productos-admin.component';
-import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.component';
 import { ActivateComponent } from './activate/activate.component';
 import { NuevaClaveComponent } from './nueva-clave/nueva-clave.component';
 import { VistaTatuajeComponent } from './vista-tatuaje/vista-tatuaje.component';
+import { GestionComponent } from './gestion/gestion.component';
 
 const routes: Routes = [
   // Componentes sin header y footer
@@ -39,7 +39,7 @@ const routes: Routes = [
       { path: 'nuevo_tatuaje', component: NuevoTatuajeComponent, canActivate: [AuthGuard] },
       { path: 'nuevo_tipo_producto', component: NuevoTipoProductoComponent, canActivate: [AuthGuard] },
       { path: 'productos_admin', component: ProductosAdminComponent, canActivate: [AuthGuard] },
-      { path: 'tatuajes_admin', component: TatuajesAdminComponent, canActivate: [AuthGuard] },
+      { path: 'gestion/:elemento', component: GestionComponent, canActivate: [AuthGuard] },
     ]
   }
 ];

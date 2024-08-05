@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 export const AuthGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
-  const restrictedRoutes = ['/nuevo_producto', '/nuevo_tipo_producto', '/nuevo_tatuaje', '/productos_admin', '/tatuajes_admin'];
+  const restrictedRoutes = ['/nuevo_producto', '/nuevo_tipo_producto', '/nuevo_tatuaje', '/productos_admin', '/gestion'];
 
   // Consultamos el método de validación de token
   return authService.tokenValidation().pipe(
@@ -48,7 +48,7 @@ export const AuthGuard: CanActivateFn = (route, state) => {
     }),
     catchError(() => {
       // Si hay error general se dirige a menú principal
-      router.navigateByUrl('/menu_principal');
+      router.navigateByUrl('/auth');
       return of(false);
     })
   );

@@ -20,10 +20,10 @@ import { AuthComponent } from './auth/auth.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { ProductosAdminComponent } from './productos-admin/productos-admin.component';
-import { TatuajesAdminComponent } from './tatuajes-admin/tatuajes-admin.component';
 import { ActivateComponent } from './activate/activate.component';
 import { NuevaClaveComponent } from './nueva-clave/nueva-clave.component';
 import { VistaTatuajeComponent } from './vista-tatuaje/vista-tatuaje.component';
+import { GestionComponent } from './gestion/gestion.component';
 
 @NgModule({
   declarations: [
@@ -41,10 +41,10 @@ import { VistaTatuajeComponent } from './vista-tatuaje/vista-tatuaje.component';
     AuthComponent,
     MainLayoutComponent,
     ProductosAdminComponent,
-    TatuajesAdminComponent,
     ActivateComponent,
     NuevaClaveComponent,
     VistaTatuajeComponent,
+    GestionComponent,
   ],
   imports: [
     BrowserModule,
