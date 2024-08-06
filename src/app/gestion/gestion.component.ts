@@ -4,6 +4,7 @@ import { TatuajeService } from '../services/tatuaje.service';
 import { InfoService } from '../services/info.service';
 import { ProductoService } from '../services/producto.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TipoProductoService } from '../services/tipo-producto.service';
 
 @Component({
   selector: 'app-gestion',
@@ -21,6 +22,7 @@ export class GestionComponent implements OnInit{
     private informacionService: InfoService,
     private route: ActivatedRoute,
     private router: Router,
+    private tipoProductoService: TipoProductoService
   ) {
     
   }
@@ -60,6 +62,13 @@ export class GestionComponent implements OnInit{
         this.elementos = tatuajes;
       });
       }
+      else if (this.nombreElemento === 'tipos_productos')
+      {
+      // Obtener los tatuajes del servicio al inicializar el componente
+      this.tipoProductoService.getTiposProducts().subscribe(tipos => {
+        this.elementos = tipos;
+      });
+      }
       else
       {
       // Obtener la información del servicio al inicializar el componente
@@ -71,66 +80,25 @@ export class GestionComponent implements OnInit{
       Swal.close();
   }
 
-  modificarElemento(elemento:any): void
-  {
-    // Verificar elemento a modificar
+  gestionarElemento(id: any) {
     if(this.nombreElemento === 'productos')
       {
-        // Modificar los productos
+        // Mandar a ventana de nuevo producto con id en parametros
         
       }
       else if (this.nombreElemento === 'tatuajes')
       {
-        // Modificar los tatuajes
-        
+      // Mandar a ventana de nuevo tatuaje con id en parametros
+      this.tatuajesService.getTatuajes().subscribe(tatuajes => {
+        this.elementos = tatuajes;
+      });
       }
       else
       {
-        // Modificar la información
-      
+      // Mandar a ventana de nueva información con id en parametros
+      this.informacionService.getInformacion().subscribe(info => {
+        this.elementos = info;
+      });
       }
-  }
-
-  eliminarElemento(elemento:any): void
-  {
-  // Verificar elemento a eliminar
-  if(this.nombreElemento === 'productos')
-    {
-      // Eliminar los productos
-      
-    }
-    else if (this.nombreElemento === 'tatuajes')
-    {
-      // Eliminar los tatuajes
-    
-    }
-    else
-    {
-      // Eliminar la información
-    
-    }
-  }
-
-  getObjectKeys(obj: any): string[] {
-    return Object.keys(obj).map(key => {
-      // Formatear la clave del objeto
-      return key.replace(/([A-Z])/g, ' $1').charAt(0).toUpperCase() + key.slice(1);
-    });
-  }
-
-  getImageValue(obj: any): string {
-    if (obj.startsWith('data:image/png;base64,')) {
-      return obj.split(',')[1]; // Obtener solo el valor de la imagen
-    }
-    return obj;
-  }
-
-  getValues(obj: any): [string, string][] {
-    // Implement to return an array of key-value pairs
-    return Object.entries(obj);
-  }
-
-  formatPrice(price: string): string {
-    return price + "€";
   }
 }

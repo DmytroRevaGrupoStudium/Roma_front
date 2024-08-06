@@ -21,4 +21,9 @@ export class InfoService {
   getAuthUrl(): string {
     return `${this.apiUrl}`; // Ejemplo de método para obtener la URL de autenticación
   }
+
+  getInfoById(infoId: string): Observable<any>
+  {
+    return this.http.get<any>(this.apiUrl+'/'+infoId);
+  }
 }

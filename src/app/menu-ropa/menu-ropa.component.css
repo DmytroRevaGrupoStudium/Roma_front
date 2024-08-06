@@ -42,28 +42,15 @@
     background-color: #969696; /* Cambia el color de fondo al hacer hover sobre un filtro seleccionado */
   }
 
-/* Estilo para los dígitos enteros del precio */
-.integer {
-  font-size: 25px; /* Tamaño de fuente más grande para los dígitos enteros */
-}
-
-/* Estilo para los decimales del precio */
-.decimal {
-  font-size: 18px; /* Tamaño de fuente más pequeño para los decimales */
-}
-
-/* Estilos para el contenido principal de productos */
-.product-image img {
-  height: 300px;
-  width: 100%;
-}
-
 /* Estilo para quitar transparencia que sobra de las imagenes */
 .product-image
 {
   background-color: white;
   border-radius: 20px 20px 20px 20px;
   padding: 10%;
+  width: 100%;
+  height: 400px;
+  margin: auto;
 }
 
 /* Estilo para los card de los productos */

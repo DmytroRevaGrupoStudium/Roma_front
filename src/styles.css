@@ -23,3 +23,25 @@ body {
     color: #525252; /* Color más oscuro al pasar el ratón */
     text-decoration: underline;
   }
+
+  .estilo-card-productos
+{
+  background-color: black;
+  color:white;
+  border-radius: 20px 20px 20px 20px;
+  width: 32%;
+}
+
+/* Estilos para el contenido principal de productos */
+.product-image img {
+    height: 300px;
+    width: 100%;
+  }
+  
+  /* Estilo para quitar transparencia que sobra de las imagenes */
+  .product-image
+  {
+    background-color: white;
+    border-radius: 20px 20px 20px 20px;
+    padding: 10%;
+  }
