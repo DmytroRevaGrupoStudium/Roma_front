@@ -5,9 +5,10 @@
   </div>
 
   <div class="row">
-    <div type="button" class="estilo-card-productos p-2 m-2 center" *ngFor="let elemento of elementos"
+    <div class="estilo-card-productos p-2 m-2 center" *ngFor="let elemento of elementos"
       (click)="gestionarElemento(elemento.id)">
       <ng-container *ngIf="nombreElemento === 'productos'">
+        <div type="button">
         <div class="product-image justify-content-center align-items-center">
           <img [src]="elemento.imagenes[0]" [alt]="elemento.nombreProducto">
         </div>
@@ -21,16 +22,12 @@
               <sup>{{ elemento.precio.toFixed(2).split('.')[1] }} €</sup>
             </strong>
           </h4>
-
-          <div>
-            <button type="button" class="btn btn-primary">Editar</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
           </div>
-
-        </div>
+      </div>
       </ng-container>
 
       <ng-container *ngIf="nombreElemento === 'tatuajes'">
+        <div type="button">
         <div class="tatuajes-image justify-content-center align-items-center">
           <img [src]="elemento.imagenes[0]" [alt]="elemento.nombreTatuaje">
         </div>
@@ -38,50 +35,40 @@
         <div class="card-body d-flex flex-column m-2">
           <h5 class="card-title">{{ elemento.nombreTatuaje }}</h5>
           <p class="card-text">{{ elemento.descripcion }}</p>
-
-          <div class="btn-container text-center">
-          <button type="button" class="btn btn-primary m-1">Editar</button>
-          <button type="button" class="btn btn-danger m-1">Eliminar</button>
-          </div>
-
+        </div>
         </div>
       </ng-container>
 
       <ng-container *ngIf="nombreElemento === 'tipos_productos'">
         <div class="card-body d-flex flex-column m-2 p-2">
-          <h5 class="card-title text-center p-2">{{ elemento.tipoProducto }}</h5>
-          <div class="btn-container">
-            <button type="button" class="btn btn-primary m-1">Editar</button>
-            <button type="button" class="btn btn-danger m-1">Eliminar</button>
-          </div>
+          <h5 class="custom-title card-title text-center p-2 m-2">{{ elemento.tipoProducto }}</h5>
         </div>
       </ng-container>
 
       <ng-container *ngIf="nombreElemento === 'informacion'">
         <div class="card-body d-flex flex-column m-2 text-center">
-          <h5 class="card-title">{{ formatString(elemento.dato, true) }}</h5>
+          <h5 class="custom-title card-title p-1">{{ formatString(elemento.dato, true) }}:</h5>
       
           <ng-container *ngIf="elemento.tipoDato === 'imagen'; else urlCheck">
-            <img class="m-auto" [src]="elemento.valor" />
+            <img class="m-auto mt-3" [src]="elemento.valor" />
           </ng-container>
       
           <ng-template #urlCheck>
           <ng-container *ngIf="elemento.tipoDato === 'url'; else defaultCheck">
-            <a [href]="elemento.valor">Enlace</a>
+            <a [href]="elemento.valor" class="mt-2">Enlace</a>
           </ng-container>
           </ng-template>
       
           <ng-template #defaultCheck>
-            <p class="card-text">{{ elemento.valor }}</p>
+            <p class="card-text mt-3">{{ elemento.valor }}</p>
           </ng-template>
-      
-          <div class="btn-container">
-            <button type="button" class="btn btn-primary m-1">Editar</button>
-            <button type="button" class="btn btn-danger m-1">Eliminar</button>
-          </div>
         </div>
       </ng-container>
-      
+
+      <div class="btn-container m-1 p-1">
+        <button type="button" class="btn btn-primary m-1">Editar</button>
+        <button type="button" class="btn btn-danger m-1">Eliminar</button>
+      </div>
     </div>
 
   </div>
