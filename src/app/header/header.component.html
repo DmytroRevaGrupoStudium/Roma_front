@@ -32,21 +32,24 @@
       <ul class="navbar-nav loginblock">
         <!-- Menú desplegable para usuarios autenticados -->
         <li class="nav-item dropstart" *ngIf="isAuthenticated; else loginBlock">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
             {{ userName }}
           </a>
           <!-- Menú desplegable con opciones adicionales -->
-          <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu">
             <!-- Opciones para administradores -->
             <ng-container *ngIf="isAdmin">
-              <a class="dropdown-item" [routerLink]="['/productos_admin']">Productos</a>
-              <a class="dropdown-item" [routerLink]="['/gestion', 'tatuajes']">Tatuajes</a>
-              <a class="dropdown-item" [routerLink]="['/gestion', 'informacion']">Información</a>
+              <li><a class="dropdown-item" [routerLink]="['/productos_admin']">Productos</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/gestion', 'tatuajes']">Tatuajes</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/gestion', 'informacion']">Información</a></li>
+              
               <div class="dropdown-divider"></div>
             </ng-container>
             <!-- Opción para cerrar sesión -->
-            <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
-          </div>
+            <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
+          </ul>
+        </div>
         </li>
         <!-- Plantilla para el bloque de inicio de sesión -->
         <ng-template #loginBlock>
