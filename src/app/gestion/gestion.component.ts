@@ -101,4 +101,19 @@ export class GestionComponent implements OnInit{
       });
       }
   }
+
+formatString(input: string, upperCaseFirstLetter: boolean): string {
+    let formattedString = input.replace(/[^a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ]/g, ' ');
+
+    if (upperCaseFirstLetter) {
+        formattedString = formattedString.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+        formattedString = formattedString.charAt(0).toUpperCase() + formattedString.slice(1);
+    } else {
+        formattedString = formattedString.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+        formattedString = formattedString.charAt(0).toLowerCase() + formattedString.slice(1);
+    }
+
+    return formattedString;
+}
+
 }
