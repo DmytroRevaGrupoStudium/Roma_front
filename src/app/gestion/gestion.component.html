@@ -5,8 +5,7 @@
   </div>
 
   <div class="row">
-    <div class="estilo-card-productos p-2 m-2 center" *ngFor="let elemento of elementos"
-      (click)="gestionarElemento(elemento.id)">
+    <div class="estilo-card-productos p-2 m-2 center" *ngFor="let elemento of elementos">
       <ng-container *ngIf="nombreElemento === 'productos'">
         <div type="button">
         <div class="product-image justify-content-center align-items-center">
@@ -66,8 +65,8 @@
       </ng-container>
 
       <div class="btn-container m-1 p-1">
-        <button type="button" class="btn btn-primary m-1">Editar</button>
-        <button type="button" class="btn btn-danger m-1">Eliminar</button>
+        <button type="button" class="btn btn-primary m-1" (click)="editarElemento(elemento.id)">Editar</button>
+        <button type="button" class="btn btn-danger m-1" (click)="eliminarElemento(elemento.id)">Eliminar</button>
       </div>
     </div>
 
