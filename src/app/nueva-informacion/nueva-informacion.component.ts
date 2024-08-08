@@ -130,6 +130,8 @@ export class NuevaInformacionComponent implements OnInit{
     this.infoFormTexto.reset();
     this.infoFormImagen.reset();
     this.imagen = "";
+
+    this.informacion.tipoDato = "texto"
   }
 
   switchToTexto() {
