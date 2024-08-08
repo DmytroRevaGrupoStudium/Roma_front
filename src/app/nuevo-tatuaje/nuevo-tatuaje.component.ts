@@ -1,30 +1,71 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { TatuajeService } from '../services/tatuaje.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Tatuaje } from '../models/tatuaje';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo-tatuaje',
   templateUrl: './nuevo-tatuaje.component.html',
   styleUrl: './nuevo-tatuaje.component.css'
 })
-export class NuevoTatuajeComponent {
+export class NuevoTatuajeComponent implements OnInit{
 
   formularioTatuaje!: FormGroup; // Definir el FormGroup
 
   imagenPrincipal: string = '';
   imagenesAdicionales: string[] = [];
 
+  tatuaje!: Tatuaje;
+
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   constructor(
-    private fb: FormBuilder, // Inyectar FormBuilder
-    private tatuajeService: TatuajeService
+    private fb: FormBuilder,
+    private tatuajeService: TatuajeService,
+    private route: ActivatedRoute,
   ) {
     this.formularioTatuaje = this.fb.group({
+      id: [''],
       nombreTatuaje: ['', [Validators.required, Validators.maxLength(20)]],
       descripcion: ['', [Validators.maxLength(50)]],
     });
+  }
+
+  ngOnInit(): void {
+    // Animación de cargando para que user no se desespere
+    Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
+    // Sacamos el id de los parametros
+    const infoId = this.route.snapshot.paramMap.get('id');
+    if (infoId) {
+      // Consultamos toda la info sobre el producto
+      this.tatuajeService.getTatuajeById(infoId).subscribe(tatuaje => {
+        this.tatuaje = tatuaje;
+
+        this.formularioTatuaje.patchValue({
+          id: this.tatuaje.id,
+          nombreTatuaje: this.tatuaje.nombreTatuaje,
+          descripcion: this.tatuaje.descripcion,
+        });
+
+        this.imagenPrincipal = this.tatuaje.imagenes[0];
+        this.imagenesAdicionales = this.tatuaje.imagenes.slice(1);
+
+        Swal.close();
+      });
+    } else {
+      Swal.close();
+    }
   }
 
   // Método de filtrado antes de abrir selector
