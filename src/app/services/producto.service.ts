@@ -39,4 +39,13 @@ export class ProductoService {
   {
     return this.http.get<any>(this.apiUrl+'/'+productId);
   }
+
+  deleteProductById(productId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete(`${this.apiUrl}/delete/${productId}`, { headers: headers });
+  }
 }

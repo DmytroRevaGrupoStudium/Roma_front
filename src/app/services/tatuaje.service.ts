@@ -37,4 +37,13 @@ export class TatuajeService {
   {
     return this.http.get<any>(this.apiUrl+'/'+tatuajeID);
   }
+
+  deleteTatuajeById(tatuajeId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete(`${this.apiUrl}/delete/${tatuajeId}`, { headers: headers });
+  }
 }

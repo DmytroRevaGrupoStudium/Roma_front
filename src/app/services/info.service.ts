@@ -12,9 +12,9 @@ export class InfoService {
   private apiUrl = '/api/';
   private dirInfo = 'informacion'
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-   getInformacion(): Observable<any[]> {
+  getInformacion(): Observable<any[]> {
     // Realizar la solicitud HTTP para obtener los productos desde la API
     return this.http.get<any[]>(`${this.apiUrl}${this.dirInfo}`);
   }
@@ -23,23 +23,31 @@ export class InfoService {
     return `${this.apiUrl}`; // Ejemplo de método para obtener la URL de autenticación
   }
 
-  getInfoById(infoId: string): Observable<any>
-  {
-    return this.http.get<any>(this.apiUrl+'/'+infoId);
+  getInfoById(infoId: string): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/' + infoId);
   }
 
- // Método para registrar un nuevo usuario
+  // Método para registrar un nuevo usuario
   altaInfo(data: any): Observable<any> {
 
-  // Obtener el token de localStorage (o de donde lo tengas almacenado)
-  const token = localStorage.getItem('token'); // Asumiendo que el token está en localStorage
+    // Obtener el token de localStorage (o de donde lo tengas almacenado)
+    const token = localStorage.getItem('token'); // Asumiendo que el token está en localStorage
 
-  // Crear los encabezados HTTP con el token
-  const headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-  });
+    // Crear los encabezados HTTP con el token
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
 
-  return this.http.post<any>(`${this.apiUrl}${this.dirInfo}`, data,  { headers: headers });
-}
+    return this.http.post<any>(`${this.apiUrl}${this.dirInfo}`, data, { headers: headers });
+  }
+
+  deleteInfoById(infoId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete(`${this.apiUrl}/delete/${infoId}`, { headers: headers });
+  }
 }

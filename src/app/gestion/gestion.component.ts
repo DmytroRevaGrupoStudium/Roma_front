@@ -23,7 +23,7 @@ export class GestionComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private tipoProductoService: TipoProductoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -32,22 +32,14 @@ export class GestionComponent implements OnInit {
         this.router.navigate(['/menu_principal']);
         return;
       }
-  
+
       this.loadData();
     });
   }
 
   loadData(): void {
-    Swal.fire({
-      title: 'Cargando...',
-      allowEscapeKey: true,
-      allowOutsideClick: false,
-      timerProgressBar: false,
-      didOpen: () => {
-        Swal.showLoading();
-      },
-    });
-  
+    this.startLoading();
+
     if (this.nombreElemento === 'productos') {
       this.productoService.getProducts().subscribe((products) => {
         this.elementos = products;
@@ -70,7 +62,19 @@ export class GestionComponent implements OnInit {
       });
     }
   }
-  
+
+
+  private startLoading() {
+    Swal.fire({
+      title: 'Cargando...',
+      allowEscapeKey: true,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+  }
 
   editarElemento(id: any) {
     if (this.nombreElemento === 'productos') {
@@ -85,14 +89,67 @@ export class GestionComponent implements OnInit {
   }
 
   eliminarElemento(id: any) {
+    this.startLoading();
+
     if (this.nombreElemento === 'productos') {
       // Eliminar con su servicio correspondiente a elemento por su id
+      this.productoService.deleteProductById(id).subscribe({
+        next: (response) => {
+          Swal.close();
+          Swal.fire({
+            title: 'Éxito',
+            text: `Eliminado correctamente.`,
+            icon: 'success',
+          });
+        },
+        error: (error) => {
+          Swal.close();
+          Swal.fire({
+            icon: "error",
+            title: "Se ha producido un error al eliminar.",
+            text: error.error.message,
+          });
+        }
+      });
+
     } else if (this.nombreElemento === 'tatuajes') {
       // Eliminar con su servicio correspondiente a elemento por su id
+      this.tatuajesService.deleteTatuajeById(id).subscribe({
+        next: (response) => {
+          Swal.close();
+          Swal.fire('Éxito', 'El tatuaje ha sido eliminado correctamente', 'success');
+        },
+        error: (error) => {
+          Swal.close();
+          Swal.fire('Error', 'No se ha podido eliminar el tatuaje', 'error');
+        }
+      });
+
     } else if (this.nombreElemento === 'tipos_productos') {
       // Eliminar con su servicio correspondiente a elemento por su id
+      this.tipoProductoService.deleteTipoDeProductoById(id).subscribe({
+        next: (response) => {
+          Swal.close();
+          Swal.fire('Éxito', 'El tipo de producto ha sido eliminado correctamente', 'success');
+        },
+        error: (error) => {
+          Swal.close();
+          Swal.fire('Error', 'No se ha podido eliminar el tipo de producto', 'error');
+        }
+      });
+
     } else {
       // Eliminar con su servicio correspondiente a elemento por su id
+      this.informacionService.deleteInfoById(id).subscribe({
+        next: (response) => {
+          Swal.close();
+          Swal.fire('Éxito', 'El elemento ha sido eliminado correctamente', 'success');
+        },
+        error: (error) => {
+          Swal.close();
+          Swal.fire('Error', 'No se ha podido eliminar el elemento', 'error');
+        }
+      });
     }
   }
 
@@ -116,8 +173,7 @@ export class GestionComponent implements OnInit {
     return formattedString;
   }
 
-  nuevoElemento() 
-  {
+  nuevoElemento() {
     if (this.nombreElemento === 'productos') {
       // Mandar a ventana de nuevo producto
       this.router.navigate(["/nuevo_producto"]);

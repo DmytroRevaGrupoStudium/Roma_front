@@ -33,4 +33,13 @@ export class TipoProductoService {
     // Realizar la solicitud HTTP para obtener los productos desde la API
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  deleteTipoDeProductoById(tipoId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete(`${this.apiUrl}/delete/${tipoId}`, { headers: headers });
+  }
 }
