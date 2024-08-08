@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 export const AuthGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
-  const restrictedRoutes = ['/nuevo_producto', '/nuevo_tipo_producto', '/nuevo_tatuaje', '/productos_admin', '/gestion'];
+  const restrictedRoutes = ['/nuevo_producto', '/nuevo_tipo_producto', '/nuevo_tatuaje', '/productos_admin', '/gestion', '/nuava_informacion'];
 
   // Consultamos el método de validación de token
   return authService.tokenValidation().pipe(

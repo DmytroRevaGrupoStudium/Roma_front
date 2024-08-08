@@ -16,6 +16,7 @@ import { ActivateComponent } from './activate/activate.component';
 import { NuevaClaveComponent } from './nueva-clave/nueva-clave.component';
 import { VistaTatuajeComponent } from './vista-tatuaje/vista-tatuaje.component';
 import { GestionComponent } from './gestion/gestion.component';
+import { NuevaInformacionComponent } from './nueva-informacion/nueva-informacion.component';
 
 const routes: Routes = [
   // Componentes sin header y footer
@@ -36,6 +37,7 @@ const routes: Routes = [
       { path: 'contacto', component: ContactoComponent },
       { path: 'tatuajes', component: TatuajesComponent },
       { path: 'nuevo_producto', component: NuevoProductoComponent, canActivate: [AuthGuard] },
+      { path: 'nueva_informacion', component: NuevaInformacionComponent, canActivate: [AuthGuard] },
       { path: 'nuevo_producto/:id', component: NuevoProductoComponent, canActivate: [AuthGuard] },
       { path: 'nuevo_tatuaje', component: NuevoTatuajeComponent, canActivate: [AuthGuard] },
       { path: 'nuevo_tipo_producto', component: NuevoTipoProductoComponent, canActivate: [AuthGuard] },

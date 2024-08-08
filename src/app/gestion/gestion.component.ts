@@ -12,6 +12,7 @@ import { TipoProductoService } from '../services/tipo-producto.service';
   styleUrl: './gestion.component.css',
 })
 export class GestionComponent implements OnInit {
+
   elementos: any[] = [];
   nombreElemento: any;
 
@@ -111,5 +112,22 @@ export class GestionComponent implements OnInit {
     }
 
     return formattedString;
+  }
+
+  nuevoElemento() 
+  {
+    if (this.nombreElemento === 'productos') {
+      // Mandar a ventana de nuevo producto
+      this.router.navigate(["/nuevo_producto"]);
+    } else if (this.nombreElemento === 'tatuajes') {
+      // Mandar a ventana de nuevo tatuaje
+      this.router.navigate(["/nuevo_tatuaje"]);
+    } else if (this.nombreElemento === 'tipoProducto') {
+      // Mandar a ventana de nuevo tipoProducto
+      this.router.navigate(["/nuevo_tipo_producto"]);
+    } else {
+      // Mandar a ventana de nueva información
+      this.router.navigate(["/nueva_informacion"]);
+    }
   }
 }

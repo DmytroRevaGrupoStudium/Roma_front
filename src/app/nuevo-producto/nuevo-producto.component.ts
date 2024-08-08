@@ -8,10 +8,9 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-nuevo-producto',
   templateUrl: './nuevo-producto.component.html',
-  styleUrls: ['./nuevo-producto.component.css']
+  styleUrls: ['./nuevo-producto.component.css'],
 })
 export class NuevoProductoComponent {
-
   formularioProducto!: FormGroup;
 
   imagenPrincipal: string = '';
@@ -31,42 +30,34 @@ export class NuevoProductoComponent {
       descripcionCorta: ['', [Validators.maxLength(50)]],
       descripcionLarga: ['', [Validators.maxLength(100)]],
       precio: [[Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]], // Validar números con máximo 2 decimales
-      tipoProducto: ['', [Validators.required, Validators.pattern(/^(?!Seleccione...).+$/)]], // Validar que no sea "Seleccione..."
+      tipoProducto: ['', [Validators.required, Validators.pattern(/^(?!Seleccione...).+$/)],
+      ], // Validar que no sea "Seleccione..."
     });
 
     // Al inicializar el componente, obtenemos todos los tipos de productos
-    this.tipoProductoService.getTiposProducts().subscribe(tipos => {
+    this.tipoProductoService.getTiposProducts().subscribe((tipos) => {
       this.tiposDeProductos = tipos;
     });
   }
 
   // Método de filtrado antes de abrir selector
   openFilePicker(index: number) {
-
     // Filtrado de img principal
-    if (index === 0 )
-      {
-        if (this.imagenPrincipal)
-        {
-            this.accionImg(0);
-        }
-        else
-        {
-          this.pickImg(index);
-        }
+    if (index === 0) {
+      if (this.imagenPrincipal) {
+        this.accionImg(0);
+      } else {
+        this.pickImg(index);
       }
-      // Filtrado de imgs secundarias
-      else
-      {
-        if (this.imagenesAdicionales[index-1])
-        {
-          this.accionImg(index);
-        }
-        else
-        {
-          this.pickImg(index);
-        }
+    }
+    // Filtrado de imgs secundarias
+    else {
+      if (this.imagenesAdicionales[index - 1]) {
+        this.accionImg(index);
+      } else {
+        this.pickImg(index);
       }
+    }
   }
 
   // Apertura de ventana de selección de archivos
@@ -87,7 +78,7 @@ export class NuevoProductoComponent {
       const reader = new FileReader();
       reader.onload = (e) => {
         const result = e.target?.result as string;
-        
+
         if (index === 0) {
           this.imagenPrincipal = result;
         } else if (index >= 1 && index <= 4) {
@@ -111,28 +102,28 @@ export class NuevoProductoComponent {
     // Crear el array de imágenes según el formato deseado
     const imagenesParaGuardar: string[] = [this.imagenPrincipal];
     for (let i = 0; i < this.imagenesAdicionales.length; i++) {
-        imagenesParaGuardar.push(this.imagenesAdicionales[i]);
+      imagenesParaGuardar.push(this.imagenesAdicionales[i]);
     }
 
     productoDatos.imagenes = imagenesParaGuardar;
 
     // Llama al servicio para guardar el producto
     this.productoService.guardarProducto(productoDatos).subscribe({
-      next: response => {
+      next: (response) => {
         Swal.fire({
           title: 'Éxito',
           text: `Producto guardado correctamente.`,
-          icon: 'success'
+          icon: 'success',
         });
         this.clearData();
       },
-      error: error => {
+      error: (error) => {
         Swal.fire({
-          icon: "error",
-          title: "Se ha producido un error al guardar el producto.",
+          icon: 'error',
+          title: 'Se ha producido un error al guardar el producto.',
           text: error.error.message,
         });
-      }
+      },
     });
   }
 
@@ -140,44 +131,44 @@ export class NuevoProductoComponent {
   hayImagenes(): boolean {
     // Verifica si la imagen principal no está vacía
     const imagenPrincipalNoVacia = this.imagenPrincipal.trim() !== '';
-  
+
     // Verifica si hay al menos una imagen adicional que no esté vacía
-    const algunaImagenAdicionalNoVacia = this.imagenesAdicionales.some(image => image.trim() !== '');
-  
+    const algunaImagenAdicionalNoVacia = this.imagenesAdicionales.some(
+      (image) => image.trim() !== ''
+    );
+
     // Devuelve true si la imagen principal no está vacía o si hay al menos una imagen adicional que no está vacía
     return imagenPrincipalNoVacia || algunaImagenAdicionalNoVacia;
   }
 
-  clearData() 
-  {
+  clearData() {
     this.formularioProducto.reset();
-    this.imagenPrincipal = "";
+    this.imagenPrincipal = '';
     this.imagenesAdicionales = [];
 
-    this.formularioProducto.get('tipoProducto')?.setValue("");
+    this.formularioProducto.get('tipoProducto')?.setValue('');
   }
 
   accionImg(index: number) {
     Swal.fire({
-      title: "¿Que necesita hacer?",
-      text: "Seleccione la acción:",
-      icon: "warning",
+      title: '¿Que necesita hacer?',
+      text: 'Seleccione la acción:',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Cambiar la imagen",
-      cancelButtonText: "Eliminar la imagen",
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Cambiar la imagen',
+      cancelButtonText: 'Eliminar la imagen',
     }).then((result) => {
       if (result.isConfirmed) {
         this.pickImg(index);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         if (index === 0) {
-          this.imagenPrincipal = "";
+          this.imagenPrincipal = '';
         } else {
-          this.imagenesAdicionales[index-1] = "";
-        } 
+          this.imagenesAdicionales[index - 1] = '';
+        }
       }
     });
   }
-
 }

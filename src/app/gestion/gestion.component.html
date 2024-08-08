@@ -1,7 +1,7 @@
 <div class="container-fluid p-5">
 
   <div class="btn-add">
-    <i type="button" class="bi bi-plus-circle text-success"> Añadir {{formatString(nombreElemento, false)}}</i>
+    <i type="button" class="bi bi-plus-circle text-success" (click)="nuevoElemento()"> Añadir {{formatString(nombreElemento, false)}}</i>
   </div>
 
   <div class="row">
@@ -49,7 +49,7 @@
           <h5 class="custom-title card-title p-1">{{ formatString(elemento.dato, true) }}:</h5>
       
           <ng-container *ngIf="elemento.tipoDato === 'imagen'; else urlCheck">
-            <img class="m-auto mt-3" [src]="elemento.valor" />
+            <img class="img-info m-auto mt-3" [src]="elemento.valor" />
           </ng-container>
       
           <ng-template #urlCheck>
