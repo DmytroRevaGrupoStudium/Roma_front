@@ -40,6 +40,6 @@ export class TipoProductoService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.delete(`${this.apiUrl}/delete/${tipoId}`, { headers: headers });
+    return this.http.delete(`${this.apiUrl}/${tipoId}`, { headers: headers });
   }
 }

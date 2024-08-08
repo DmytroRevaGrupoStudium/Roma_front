@@ -46,6 +46,6 @@ export class ProductoService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.delete(`${this.apiUrl}/delete/${productId}`, { headers: headers });
+    return this.http.delete(`${this.apiUrl}/${productId}`, { headers: headers });
   }
 }

@@ -44,6 +44,6 @@ export class TatuajeService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.delete(`${this.apiUrl}/delete/${tatuajeId}`, { headers: headers });
+    return this.http.delete(`${this.apiUrl}/${tatuajeId}`, { headers: headers });
   }
 }

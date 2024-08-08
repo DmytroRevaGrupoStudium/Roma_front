@@ -48,6 +48,6 @@ export class InfoService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.delete(`${this.apiUrl}/delete/${infoId}`, { headers: headers });
+    return this.http.delete(`${this.apiUrl}${this.dirInfo}/${infoId}`, { headers: headers });
   }
 }
