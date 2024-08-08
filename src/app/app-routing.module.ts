@@ -38,9 +38,12 @@ const routes: Routes = [
       { path: 'tatuajes', component: TatuajesComponent },
       { path: 'nuevo_producto', component: NuevoProductoComponent, canActivate: [AuthGuard] },
       { path: 'nueva_informacion', component: NuevaInformacionComponent, canActivate: [AuthGuard] },
-      { path: 'nuevo_producto/:id', component: NuevoProductoComponent, canActivate: [AuthGuard] },
       { path: 'nuevo_tatuaje', component: NuevoTatuajeComponent, canActivate: [AuthGuard] },
       { path: 'nuevo_tipo_producto', component: NuevoTipoProductoComponent, canActivate: [AuthGuard] },
+      { path: 'nuevo_producto/:id', component: NuevoProductoComponent, canActivate: [AuthGuard] },
+      { path: 'nueva_informacion/:id', component: NuevaInformacionComponent, canActivate: [AuthGuard] },
+      { path: 'nuevo_tatuaje/:id', component: NuevoTatuajeComponent, canActivate: [AuthGuard] },
+      { path: 'nuevo_tipo_producto/:id', component: NuevoTipoProductoComponent, canActivate: [AuthGuard] },
       { path: 'productos_admin', component: ProductosAdminComponent, canActivate: [AuthGuard] },
       { path: 'gestion/:elemento', component: GestionComponent, canActivate: [AuthGuard] },
     ]

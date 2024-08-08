@@ -77,13 +77,17 @@ export class GestionComponent implements OnInit {
 
   editarElemento(id: any) {
     if (this.nombreElemento === 'productos') {
-      // Mandar a ventana de nuevo producto con id en parametros
+      // Mandar a ventana de nuevo producto con id
+      this.router.navigate(["/nuevo_producto", id]);
     } else if (this.nombreElemento === 'tatuajes') {
-      // Mandar a ventana de nuevo tatuaje con id en parametros
+      // Mandar a ventana de nuevo tatuaje con id
+      this.router.navigate(["/nuevo_tatuaje", id]);
     } else if (this.nombreElemento === 'tipos_productos') {
-      // Mandar a ventana de nuevo tipoProducto con id en parametros
+      // Mandar a ventana de nuevo tipoProducto con id
+      this.router.navigate(["/nuevo_tipo_producto", id]);
     } else {
-      // Mandar a ventana de nueva información con id en parametros
+      // Mandar a ventana de nueva información con id
+      this.router.navigate(["/nueva_informacion", id]);
     }
   }
 
