@@ -184,7 +184,7 @@ export class GestionComponent implements OnInit {
     return formattedString;
   }
 
-  nuevoElemento() {
+  addElemento() {
     if (this.nombreElemento === 'productos') {
       // Mandar a ventana de nuevo producto
       this.router.navigate(["/nuevo_producto"]);
