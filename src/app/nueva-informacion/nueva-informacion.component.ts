@@ -25,7 +25,11 @@ export class NuevaInformacionComponent implements OnInit{
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private infoService: InfoService, private fb: FormBuilder,     private route: ActivatedRoute,) {
+  constructor(
+    private infoService: InfoService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+  ) {
     this.infoFormTexto = this.fb.group({
       id: [''],
       dato: ['', [Validators.required, Validators.maxLength(20)]],

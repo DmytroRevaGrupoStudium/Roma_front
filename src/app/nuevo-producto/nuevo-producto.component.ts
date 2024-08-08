@@ -1,16 +1,18 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
 import { TipoProductoService } from '../services/tipo-producto.service';
 import { TipoProducto } from '../models/tipo-producto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Producto } from '../models/producto';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo-producto',
   templateUrl: './nuevo-producto.component.html',
   styleUrls: ['./nuevo-producto.component.css'],
 })
-export class NuevoProductoComponent {
+export class NuevoProductoComponent implements OnInit{
   formularioProducto!: FormGroup;
 
   imagenPrincipal: string = '';
@@ -18,14 +20,18 @@ export class NuevoProductoComponent {
 
   tiposDeProductos: TipoProducto[] = [];
 
+  producto!: Producto;
+
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     private fb: FormBuilder,
     private productoService: ProductoService,
-    private tipoProductoService: TipoProductoService
+    private tipoProductoService: TipoProductoService,
+    private route: ActivatedRoute,
   ) {
     this.formularioProducto = this.fb.group({
+      id: [''],
       nombreProducto: ['', [Validators.required, Validators.maxLength(20)]],
       descripcionCorta: ['', [Validators.maxLength(50)]],
       descripcionLarga: ['', [Validators.maxLength(100)]],
@@ -39,6 +45,45 @@ export class NuevoProductoComponent {
       this.tiposDeProductos = tipos;
     });
   }
+
+  ngOnInit(): void {
+    // Animación de cargando para que user no se desespere
+    Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
+    // Sacamos el id de los parametros
+    const infoId = this.route.snapshot.paramMap.get('id');
+    if (infoId) {
+      // Consultamos toda la info sobre el producto
+      this.productoService.getProductById(infoId).subscribe(producto => {
+        this.producto = producto;
+
+        this.formularioProducto.patchValue({
+          id: this.producto.id,
+          nombreProducto: this.producto.nombreProducto,
+          descripcionCorta: this.producto.descripcionCorta,
+          descripcionLarga:  this.producto.descripcionLarga,
+          precio:  this.producto.precio,
+          tipoProducto: this.producto.tipoProducto,
+        });
+
+        this.imagenPrincipal = this.producto.imagenes[0];
+        this.imagenesAdicionales = this.producto.imagenes.slice(1);
+
+        Swal.close();
+      });
+    } else {
+      Swal.close();
+    }
+  }
+
 
   // Método de filtrado antes de abrir selector
   openFilePicker(index: number) {
