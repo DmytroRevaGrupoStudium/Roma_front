@@ -26,6 +26,18 @@ export class GestionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.nombreElemento = params.get('elemento');
+      if (!this.nombreElemento) {
+        this.router.navigate(['/menu_principal']);
+        return;
+      }
+  
+      this.loadData();
+    });
+  }
+
+  loadData(): void {
     Swal.fire({
       title: 'Cargando...',
       allowEscapeKey: true,
@@ -35,47 +47,37 @@ export class GestionComponent implements OnInit {
         Swal.showLoading();
       },
     });
-
-    this.route.paramMap.subscribe((params) => {
-      this.nombreElemento = params.get('elemento');
-      if (!this.nombreElemento) {
-        this.router.navigate(['/menu_principal']);
-        return;
-      }
-    });
-
-    // Verificar elementos a gestionar
+  
     if (this.nombreElemento === 'productos') {
-      // Obtener los productos del servicio al inicializar el componente
       this.productoService.getProducts().subscribe((products) => {
         this.elementos = products;
+        Swal.close();
       });
     } else if (this.nombreElemento === 'tatuajes') {
-      // Obtener los tatuajes del servicio al inicializar el componente
       this.tatuajesService.getTatuajes().subscribe((tatuajes) => {
         this.elementos = tatuajes;
+        Swal.close();
       });
     } else if (this.nombreElemento === 'tipos_productos') {
-      // Obtener los tatuajes del servicio al inicializar el componente
       this.tipoProductoService.getTiposProducts().subscribe((tipos) => {
         this.elementos = tipos;
+        Swal.close();
       });
     } else {
-      // Obtener la información del servicio al inicializar el componente
       this.informacionService.getInformacion().subscribe((info) => {
         this.elementos = info;
+        Swal.close();
       });
     }
-
-    Swal.close();
   }
+  
 
   editarElemento(id: any) {
     if (this.nombreElemento === 'productos') {
       // Mandar a ventana de nuevo producto con id en parametros
     } else if (this.nombreElemento === 'tatuajes') {
       // Mandar a ventana de nuevo tatuaje con id en parametros
-    } else if (this.nombreElemento === 'tipoProducto') {
+    } else if (this.nombreElemento === 'tipos_productos') {
       // Mandar a ventana de nuevo tipoProducto con id en parametros
     } else {
       // Mandar a ventana de nueva información con id en parametros
@@ -87,7 +89,7 @@ export class GestionComponent implements OnInit {
       // Eliminar con su servicio correspondiente a elemento por su id
     } else if (this.nombreElemento === 'tatuajes') {
       // Eliminar con su servicio correspondiente a elemento por su id
-    } else if (this.nombreElemento === 'tipoProducto') {
+    } else if (this.nombreElemento === 'tipos_productos') {
       // Eliminar con su servicio correspondiente a elemento por su id
     } else {
       // Eliminar con su servicio correspondiente a elemento por su id
@@ -122,7 +124,7 @@ export class GestionComponent implements OnInit {
     } else if (this.nombreElemento === 'tatuajes') {
       // Mandar a ventana de nuevo tatuaje
       this.router.navigate(["/nuevo_tatuaje"]);
-    } else if (this.nombreElemento === 'tipoProducto') {
+    } else if (this.nombreElemento === 'tipos_productos') {
       // Mandar a ventana de nuevo tipoProducto
       this.router.navigate(["/nuevo_tipo_producto"]);
     } else {

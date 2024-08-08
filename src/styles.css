@@ -46,26 +46,18 @@ body {
 }
 
 /* Estilos para el contenido principal de productos */
-.product-image img {
-  height: 300px;
+.ropa-image img {
+  height: 400px;
+  width: 100%;
+}
+
+.tatuaje-image img {
+  height: 500px;
   width: 100%;
 }
 
 /* Estilo para quitar transparencia que sobra de las imagenes */
 .product-image {
-  background-color: white;
-  border-radius: 20px 20px 20px 20px;
-  padding: 10%;
-}
-
-/* Estilos para el contenido principal de productos */
-.tatuajes-image img {
-  height: 450px;
-  width: 100%;
-}
-
-/* Estilo para quitar transparencia que sobra de las imagenes */
-.tatuajes-image {
   background-color: white;
   border-radius: 20px 20px 20px 20px;
   padding: 10%;

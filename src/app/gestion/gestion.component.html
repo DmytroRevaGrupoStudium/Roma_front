@@ -8,7 +8,7 @@
     <div class="estilo-card-productos p-2 m-2 center" *ngFor="let elemento of elementos">
       <ng-container *ngIf="nombreElemento === 'productos'">
         <div type="button">
-        <div class="product-image justify-content-center align-items-center">
+        <div class="product-image ropa-image justify-content-center align-items-center">
           <img [src]="elemento.imagenes[0]" [alt]="elemento.nombreProducto">
         </div>
 
@@ -27,7 +27,7 @@
 
       <ng-container *ngIf="nombreElemento === 'tatuajes'">
         <div type="button">
-        <div class="tatuajes-image justify-content-center align-items-center">
+        <div class="product-image tatuaje-image justify-content-center align-items-center">
           <img [src]="elemento.imagenes[0]" [alt]="elemento.nombreTatuaje">
         </div>
 
