@@ -1,14 +1,16 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { InfoService } from '../services/info.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { informacion } from '../models/informacion';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nueva-informacion',
   templateUrl: './nueva-informacion.component.html',
   styleUrl: './nueva-informacion.component.css'
 })
-export class NuevaInformacionComponent {
+export class NuevaInformacionComponent implements OnInit{
 
   // Config para hacer switch de formularios
   formMode: 'texto' | 'imagen' = 'texto';
@@ -19,20 +21,77 @@ export class NuevaInformacionComponent {
   infoFormTexto: FormGroup;
   infoFormImagen: FormGroup;
 
+  informacion!: informacion;
+
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private infoService: InfoService, private fb: FormBuilder) {
+  constructor(private infoService: InfoService, private fb: FormBuilder,     private route: ActivatedRoute,) {
     this.infoFormTexto = this.fb.group({
+      id: [''],
       dato: ['', [Validators.required, Validators.maxLength(20)]],
       valor: ['', [Validators.required]],
       tipoDato: ['texto', [Validators.required]],
     });
 
     this.infoFormImagen = this.fb.group({
+      id: [''],
       dato: ['', [Validators.required, Validators.maxLength(20)]],
       tipoDato: ['imagen', [Validators.required]]
     });
   }
+
+  ngOnInit(): void {
+    // Animación de cargando para que user no se desespere
+    Swal.fire({
+      title: "Cargando...",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+  
+    // Sacamos el id de los parametros
+    const infoId = this.route.snapshot.paramMap.get('id');
+    if (infoId) {
+      // Consultamos toda la info sobre el producto
+      this.infoService.getInfoById(infoId).subscribe(info => {
+        this.informacion = info;
+  
+        if (this.informacion.tipoDato === "imagen") {
+          this.formMode = 'imagen';
+          this.infoFormImagen.patchValue({
+            id: this.informacion.id,
+            dato: this.informacion.dato
+          });
+
+          this.infoFormTexto.patchValue({
+            id: this.informacion.id,
+            dato: this.informacion.dato
+          });
+
+          this.imagen = this.informacion.valor;
+        } else {
+          this.infoFormTexto.patchValue({
+            id: this.informacion.id,
+            dato: this.informacion.dato,
+            valor: this.informacion.valor,
+            tipoDato: this.informacion.tipoDato
+          });
+
+          this.infoFormImagen.patchValue({
+            id: this.informacion.id,
+            dato: this.informacion.dato
+          });
+        }
+  
+        Swal.close();
+      });
+    } else {
+      Swal.close();
+    }
+  }  
 
   // Método de filtrado antes de abrir selector
   openFilePicker() {
@@ -84,6 +143,7 @@ export class NuevaInformacionComponent {
       }
 
       const data = {
+        id: this.infoFormTexto.get('id')?.value,
         dato: this.infoFormTexto.get('dato')?.value,
         valor: this.infoFormTexto.get('valor')?.value,
         tipoDato: this.infoFormTexto.get('tipoDato')?.value === 'texto' ? 'texto' : 'url'
@@ -92,11 +152,10 @@ export class NuevaInformacionComponent {
       this.alta(data);
     } else {
       if (this.formMode === 'imagen') {
-        console.log("Es imagen");
         if (this.infoFormImagen.valid && this.hayImagen()) {
-          console.log("Formulario válido y hay imagen");
-
+        
           const data = {
+            id: this.infoFormTexto.get('id')?.value,
             dato: this.infoFormImagen.get('dato')?.value,
             valor: this.imagen,
             tipoDato: 'imagen'

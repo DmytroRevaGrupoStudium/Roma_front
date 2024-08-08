@@ -21,8 +21,8 @@
       
       <div class="form-group m-2">
         <label for="isUrl">¿Es una URL?</label>
-        <input type="checkbox" (change)="checkboxChange($event)">    
-      </div>
+        <input type="checkbox" (change)="checkboxChange($event)" [checked]="informacion.tipoDato === 'url'">    
+      </div>    
       
       <button type="button" class="btn btn-success mt-2" (click)="onSubmit()">Guardar</button>
     </form>

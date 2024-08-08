@@ -24,7 +24,7 @@ export class InfoService {
   }
 
   getInfoById(infoId: string): Observable<any> {
-    return this.http.get<any>(this.apiUrl + '/' + infoId);
+    return this.http.get<any>(`${this.apiUrl}${this.dirInfo}/${infoId}`);
   }
 
   // Método para registrar un nuevo usuario
