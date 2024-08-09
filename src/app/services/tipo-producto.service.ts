@@ -42,4 +42,10 @@ export class TipoProductoService {
     });
     return this.http.delete(`${this.apiUrl}/${tipoId}`, { headers: headers });
   }
+
+    // Realizar la solicitud HTTP para obtener los productos desde la API solamente por la ID de producto
+    getTipoById(id: string): Observable<any>
+    {
+      return this.http.get<any>(this.apiUrl+'/'+id);
+    }
 }
